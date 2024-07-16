@@ -1,25 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public class Program
+namespace Assets
 {
-    int foo;
-
-    static void Main(string[] args)
+    public class Program
     {
-        /* Will NOT work because Main() is static. 
-         * Globals must be static in this local scope */
-        foo = 2;
+        int foo;
 
-        List<int> whitePieces = new List<int>();
-        whitePieces.Add(3);
+        static void Main(string[] args)
+        {
+            /* Will NOT work because Main() is static. 
+             * Globals must be static in this local scope */
+            foo = 2;
 
-        Console.WriteLine("Hello World!");
-        Console.ReadLine();
-    }
+            List<int> whitePieces = new List<int>();
+            whitePieces.Add(3);
 
-    public void bar()
-    {
-        foo = 4;
+            Console.WriteLine("Hello World!");
+            Console.ReadLine();
+        }
+
+        public void bar()
+        {
+            foo = 4;
+        }
     }
 }
