@@ -18,30 +18,12 @@ public abstract class Piece
     {
 
     }
-
-public class King:Piece
-{
-    public bool HasMoved;
-    public bool IsChecked;
-
-    public void TryCastle() { }
-
-}
-
-public class Rook:Piece
-{
-    public bool HasMoved;
-    public bool IsLeft;
-
-    public void TryCastle() { }
 }
 
 public class Pawn:Piece
 {
     public void Promote() { }
     public void CanEnPassant() { }
-}
-
 }
 
 public class Game
@@ -74,7 +56,7 @@ public class PuzzleGenerator
 
     public Game GeneratePuzzle
     {
-        return new Game(); 
+        return null; 
     }
    
     public void StartPuzzle()
