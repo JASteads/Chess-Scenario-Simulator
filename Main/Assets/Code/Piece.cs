@@ -43,3 +43,57 @@ public class Pawn:Piece
 }
 
 }
+
+public class Game
+{
+    public List<Piece> WhitePieces;
+    public List<Piece> BlackPieces;
+    public bool WhiteTurn;
+    public bool IsActive;
+
+    public void SetBoard() { }
+    public void SelectPiece() { }
+    public void OnMove() { }
+}
+
+public class Scenario
+{
+    public int Rating;
+    public List<Piece> StartingPieces;
+    public List<short> CorrectMoves;
+    public List<short> CounterMoves;
+}
+
+public class PuzzleGenerator
+{
+    public Game Simulation;
+    public int TargetRating;
+    public int NumAttempts;
+    public List<Scenario> ScenarioList;
+    public int Score;
+
+    public Game GeneratePuzzle
+    {
+        return new Game(); 
+    }
+   
+    public void StartPuzzle()
+    {
+
+    }
+   
+    public void Update()
+    {
+
+    }
+    
+    public void AddNoise()
+    {
+
+    }
+    
+    public void OnMove()
+    {
+
+    }
+}
