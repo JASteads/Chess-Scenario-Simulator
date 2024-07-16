@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 public class PuzzleGenerator
 {
     public Game Simulation;
@@ -6,7 +8,7 @@ public class PuzzleGenerator
     public List<Scenario> ScenarioList;
     public int Score;
 
-    public Game GeneratePuzzle
+    public Game GeneratePuzzle()
     {
         return null; 
     }

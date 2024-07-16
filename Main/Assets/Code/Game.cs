@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 public class Game
 {
     public List<Piece> WhitePieces;
