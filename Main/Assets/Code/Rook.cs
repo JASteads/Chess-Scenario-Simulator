@@ -1,4 +1,4 @@
-public class Rook : Piece
+public class Rook:Piece
 {
     public bool HasMoved;
     public bool IsLeft;
