@@ -28,8 +28,9 @@ public class PuzzleGenerator
         s1.StartingPieces.Add(new Queen (61,0));
         s1.StartingPieces.Add(new King (39,1));
         s1.StartingPieces.Add(new Queen(21,0));
-        s1.CorrectMoves.Add(); 
-        s1.CounterMoves.Add(); 
+        s1.CorrectMoves.Add((47 << 0) | (4 << 6) | (0 << 9));
+        s1.CorrectMoves.Add((42 << 0) | (4 << 6) | (0 << 9));
+        s1.CounterMoves.Add((60 << 0) | (5 << 6) | (1 << 9));
         ScenarioList.Add(s1);
 
 
