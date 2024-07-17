@@ -22,9 +22,9 @@ namespace ConsoleApp.Code
 
         }
 
-        /* int[] chessPiece = new [] {"Pawn", "Rook", "Knight", "Bishop", "Queen", "King"};
-        int[] color = new[] {"White", "Black"};
-        int[] chessBoard = new[] {"A1" , "B1", "C1", "D1", "E1", "F1", "G1", "H1",
+        /* string[] chessPiece = new [] {"Pawn", "Rook", "Knight", "Bishop", "Queen", "King"};
+        string[] color = new[] {"White", "Black"};
+        string[] chessBoard = new[] {"A1" , "B1", "C1", "D1", "E1", "F1", "G1", "H1",
                                   "A2" , "B2", "C2", "D2", "E2", "F2", "G2", "H2",
                                   "A3" , "B3", "C3", "D3", "E3", "F3", "G3", "H3",
                                   "A4" , "B4", "C4", "D4", "E4", "F4", "G4", "H4",
@@ -43,7 +43,7 @@ namespace ConsoleApp.Code
         public void setPosition(short newPosition)
         {
             short mask = 63;
-            position = newPosition & mask;
+            ushort position = (ushort) (newPosition & mask);
         }
 
         public short getPieceType()
@@ -54,8 +54,8 @@ namespace ConsoleApp.Code
         public void setPieceType(short newPieceType)
         {
             short mask = 511;
-            pieceType = newPieceType & mask;
-            pieceType = pieceType >> 6;
+            ushort pieceType = (ushort) (newPieceType & mask);
+            pieceType = (ushort) (pieceType >> 6);
         }
 
         public short getTeamColor()
@@ -66,8 +66,8 @@ namespace ConsoleApp.Code
         public void setTeamColor(short newColor)
         {
             short mask = 1023;
-            teamColor = newColor & mask;
-            teamColor = teamColor >> 9;
+            ushort teamColor = (ushort) (newColor & mask);
+            teamColor = (ushort) (teamColor >> 9);
         }
 
         /*public void printInformation()
