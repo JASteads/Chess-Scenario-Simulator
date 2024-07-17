@@ -1,0 +1,10 @@
+C:\Users\Machine\Documents\Chess-Scenario-Simulator\Main\bin\Debug\Main.exe.config
+C:\Users\Machine\Documents\Chess-Scenario-Simulator\Main\bin\Debug\Main.exe
+C:\Users\Machine\Documents\Chess-Scenario-Simulator\Main\bin\Debug\Main.pdb
+C:\Users\Machine\Documents\Chess-Scenario-Simulator\Main\obj\Debug\Main.csprojAssemblyReference.cache
+C:\Users\Machine\Documents\Chess-Scenario-Simulator\Main\obj\Debug\Main.Form1.resources
+C:\Users\Machine\Documents\Chess-Scenario-Simulator\Main\obj\Debug\Main.Properties.Resources.resources
+C:\Users\Machine\Documents\Chess-Scenario-Simulator\Main\obj\Debug\Main.csproj.GenerateResource.cache
+C:\Users\Machine\Documents\Chess-Scenario-Simulator\Main\obj\Debug\Main.csproj.CoreCompileInputs.cache
+C:\Users\Machine\Documents\Chess-Scenario-Simulator\Main\obj\Debug\Main.exe
+C:\Users\Machine\Documents\Chess-Scenario-Simulator\Main\obj\Debug\Main.pdb
