@@ -22,9 +22,9 @@ namespace ConsoleApp.Code
 
         }
 
-        /* string[] chessPiece = new [] {"Pawn", "Rook", "Knight", "Bishop", "Queen", "King"};
-        string[] color = new[] {"White", "Black"};
-        string[] chessBoard = new[] {"A1" , "B1", "C1", "D1", "E1", "F1", "G1", "H1",
+        string[] chessPiece = {"Pawn", "Rook", "Knight", "Bishop", "Queen", "King"};
+        string[] color = {"White", "Black"};
+        string[] chessBoard = {   "A1" , "B1", "C1", "D1", "E1", "F1", "G1", "H1",
                                   "A2" , "B2", "C2", "D2", "E2", "F2", "G2", "H2",
                                   "A3" , "B3", "C3", "D3", "E3", "F3", "G3", "H3",
                                   "A4" , "B4", "C4", "D4", "E4", "F4", "G4", "H4",
@@ -33,7 +33,7 @@ namespace ConsoleApp.Code
                                   "A7" , "B7", "C7", "D7", "E7", "F7", "G7", "H7",
                                   "A8" , "B8", "C8", "D8", "E8", "F8", "G8", "H8",
                                  };
-        */
+        
 
         public short getPosition()
         {
@@ -70,12 +70,12 @@ namespace ConsoleApp.Code
             teamColor = (ushort) (teamColor >> 9);
         }
 
-        /*public void printInformation()
+        public void printInformation()
         {
-            ConsoleApp.WriteLine("Position: " + chessBoard[position]);
-            ConsoleApp.WriteLine("Piece Type: " + chessPiece[pieceType]);
-            ConsoleApp.WriteLine("Team Color: " + color[teamColor]);
+            Console.WriteLine("Position: " + chessBoard[position]);
+            Console.WriteLine("Piece Type: " + chessPiece[pieceType]);
+            Console.WriteLine("Team Color: " + color[teamColor]);
         }
-        */
+        
     }
 }
