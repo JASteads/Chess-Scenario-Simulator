@@ -97,7 +97,7 @@ public class PuzzleGenerator
         {
             Rating = 500
         };
-        s5.StartingPieces.Add(new Bisop (52,1));
+        s5.StartingPieces.Add(new Bishop (52,1));
         s5.StartingPieces.Add(new Queen (52,0));
         s5.StartingPieces.Add(new Queen (52,1));
         s5.StartingPieces.Add(new Bishop (52,0));
@@ -177,8 +177,7 @@ public class PuzzleGenerator
             Rating = 1100
         };
         s11.StartingPieces.Add(new Queen (62,0));
-        s11.CorrectMoves.Add(( 62<< 0) | (4 << 6) | (0 << 9)); 
-        s11.CounterMoves.Add(); 
+        s11.CorrectMoves.Add(( 62<< 0) | (4 << 6) | (0 << 9));
         ScenarioList.Add(s11);
 
 
@@ -199,8 +198,7 @@ public class PuzzleGenerator
         };
         s13.StartingPieces.Add(new Rook (39,0));
         
-        s13.CorrectMoves.Add(( 39<< 0) | (1 << 6) | (0 << 9)); 
-        s13.CounterMoves.Add(); 
+        s13.CorrectMoves.Add(( 39<< 0) | (1 << 6) | (0 << 9));
         ScenarioList.Add(s13);
 
 
