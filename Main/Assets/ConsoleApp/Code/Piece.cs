@@ -6,13 +6,79 @@ public abstract class Piece
 {
 
     protected short information = 0;
-    public Piece(int location, int team)
+    public Piece(ushort location, ushort team)
     {
         SetPosition(location);
         SetTeam(team);
     }
 
     public class King:Piece
+    {
+        public King(ushort location, ushort team) : base(location, team)
+        {
+            SetType(5);
+        }
+        public override bool CheckMoves()
+        {
+            return true;
+        }
+
+    }
+        public class Queen:Piece
+    {
+        public Queen(ushort location, ushort team) : base(location, team)
+        {
+            SetType(4);
+        }
+        public override bool CheckMoves()
+        {
+            return true;
+        }
+    }
+        public class Bishop:Piece
+    {
+        public Bishop(ushort location, ushort team) : base(location, team)
+        {
+            SetType(3);
+        }
+        public override bool CheckMoves()
+        {
+            return true;
+        }
+    }
+        public class Knight:Piece
+    {
+        public Knight(ushort location, ushort team) : base(location, team)
+        {
+            SetType(2);
+        }
+        public override bool CheckMoves()
+        {
+            return true;
+        }
+    }
+        public class Rook:Piece
+    {
+        public Rook(ushort location, ushort team) : base(location, team)
+        {
+            SetType(1);
+        }
+        public override bool CheckMoves()
+        {
+            return true;
+        }
+    }
+        public class Pawn:Piece
+    {
+        public Pawn(ushort location, ushort team) : base(location, team)
+        {
+            SetType(0);
+        }
+        public override bool CheckMoves()
+        {
+            return true;
+        }
+    }
 
     public int GetPosition(Piece p)
     {
@@ -26,25 +92,25 @@ public abstract class Piece
     {
         return (p.information >> 9) & 1;
     }
-    public void SetPosition(int newPos)
+    public void SetPosition(ushort newPos)
     {
         if (newPos >= 0 && newPos <= 63)
         {
-            information = (information & ~63) | newPos;
+            information = (short)((information & ~63) | newPos);
         }
     }
     public void SetType(int newType)
     {
         if (newType >= 0 && newType <= 5)
         {
-            
+            information = (short)((information & ~(7 << 6)) | ((short)newType << 6));
         }
     }
     public void SetTeam(int newTeam)
     {   
         if(newTeam >= 0 && newTeam <= 1)
         {
-
+            information = (short)((information & ~(1 << 9)) | ((short)newTeam << 9));
         }
     }
     /*public char[] Piece:NotateLocation()
@@ -62,10 +128,11 @@ public abstract class Piece
     }
     */
 
-    /* public abstract bool CheckMoves()
-    {
-        return true;
-    }
+     public abstract bool CheckMoves();
+  
+
+
+
 
 
     public void Move()
@@ -77,5 +144,5 @@ public abstract class Piece
     {
 
     }
-    */
+    
 }
