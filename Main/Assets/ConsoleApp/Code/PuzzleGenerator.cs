@@ -14,7 +14,7 @@ public class PuzzleGenerator
     {
         
         int marginOfError = 100;
-        s
+        
         // Get a list of scenarios within the margin of error of the target rating
         List<Scenario> eligibleScenarios = ScenarioList.Where(s => Math.Abs(s.Rating - TargetRating) <= marginOfError).ToList();
 
@@ -264,6 +264,10 @@ public class PuzzleGenerator
             occupiedPositions.Add(piece.GetPosition(piece));
         }
 
+
+        List<Piece> noisePieces = new List<Piece>();
+
+
         // Add noise pieces
         for (int i = 0; i < noiseCount; i++)
         {
@@ -304,6 +308,7 @@ public class PuzzleGenerator
             if (newPiece != null)
             {
                 SelectedScenario.StartingPieces.Add(newPiece);
+                noisePieces.Add(newPiece);
             }
 
         }
@@ -314,15 +319,37 @@ public class PuzzleGenerator
             int fromPosition = move & 63;
             int toPosition = (move >> 6) & 63;
 
-            if (occupiedPositions.Contains(toPosition))
+            foreach (var noisePiece in noisePieces)
             {
-                // If the move is obstructed by noise, remove the obstruction
-                SelectedScenario.StartingPieces.RemoveAll(piece => piece.GetPosition(piece) == toPosition);
-                occupiedPositions.Remove(toPosition);
+                if (IsMoveObstructed(fromPosition, toPosition, noisePiece.GetPosition(noisePiece)))
+                {
+                    // Handle the obstruction by removing or demoting the noise piece
+                    SelectedScenario.StartingPieces.Remove(noisePiece);
+                    noisePieces.Remove(noisePiece);
+                    break;
+                }
             }
         }
     }
-    
+
+    private bool IsMoveObstructed(int from, int to, int obstacle)
+    {
+        int fromRow = from / 8, fromCol = from % 8;
+        int toRow = to / 8, toCol = to % 8;
+        int obstacleRow = obstacle / 8, obstacleCol = obstacle % 8;
+
+        if (fromRow == toRow) // Horizontal move
+        {
+            return obstacleRow == fromRow && ((fromCol < obstacleCol && obstacleCol < toCol) || (toCol < obstacleCol && obstacleCol < fromCol));
+        }
+        if (fromCol == toCol) // Vertical move
+        {
+            return obstacleCol == fromCol && ((fromRow < obstacleRow && obstacleRow < toRow) || (toRow < obstacleRow && obstacleRow < fromRow));
+        }
+  
+        return false;
+    }
+
     public void OnMove()
     {
 
