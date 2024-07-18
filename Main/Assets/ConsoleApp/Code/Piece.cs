@@ -12,6 +12,7 @@ public abstract class Piece
         SetTeam(team);
     }
 
+
     public int GetPosition(Piece p)
     {
         return p.information & 63;
@@ -62,11 +63,6 @@ public abstract class Piece
 
      public abstract bool CheckMoves();
   
-
-
-
-
-
     public void Move()
     {
 
