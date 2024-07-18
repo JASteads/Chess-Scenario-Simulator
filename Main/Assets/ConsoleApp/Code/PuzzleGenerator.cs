@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 
 public class PuzzleGenerator
 {
@@ -10,7 +8,7 @@ public class PuzzleGenerator
     public List<Scenario> ScenarioList;
     public int Score;
 
-    public Game GeneratePuzzle()
+    public void GeneratePuzzle()
     {
         
         int marginOfError = 100;
@@ -24,7 +22,6 @@ public class PuzzleGenerator
         }
 
         Random random = new Random();
-
         Scenario selectedScenario = eligibleScenarios[random.Next(eligibleScenarios.Count)];
 
         // If the selected scenario's rating is much lower than the target rating, add noise
@@ -36,7 +33,6 @@ public class PuzzleGenerator
         // Start the puzzle with the selected scenario
         StartPuzzle(selectedScenario);
 
-        return Simulation;
     }
 
 
@@ -179,7 +175,7 @@ public class PuzzleGenerator
             Rating = 1100
         };
         s11.StartingPieces.Add(new Queen (62,0));
-        s11.CorrectMoves.Add((62<< 0) | (4 << 6) | (0 << 9)); 
+        s11.CorrectMoves.Add(( << 0) | (4 << 6) | (0 << 9)); 
         s11.CounterMoves.Add(); 
         ScenarioList.Add(s11);
 
@@ -201,7 +197,7 @@ public class PuzzleGenerator
         };
         s13.StartingPieces.Add(new Rook (39,0));
         
-        s13.CorrectMoves.Add((39<< 0) | (1 << 6) | (0 << 9)); 
+        s13.CorrectMoves.Add(( << 0) | (1 << 6) | (0 << 9)); 
         s13.CounterMoves.Add(); 
         ScenarioList.Add(s13);
 

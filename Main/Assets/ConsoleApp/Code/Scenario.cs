@@ -6,4 +6,11 @@ public class Scenario
     public List<Piece> StartingPieces;
     public List<short> CorrectMoves;
     public List<short> CounterMoves;
+
+    public Scenario()
+    {
+        StartingPieces = new List<Piece>();
+        CorrectMoves = new List<short>();
+        CounterMoves = new List<short>();
+    }
 }
