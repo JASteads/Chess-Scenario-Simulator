@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ConsoleApp.Code;
 
 namespace Assets
 {
@@ -11,13 +12,19 @@ namespace Assets
         {
             /* Will NOT work because Main() is static. 
              * Globals must be static in this local scope */
-            foo = 2;
+            // foo = 2;
 
-            List<int> whitePieces = new List<int>();
-            whitePieces.Add(3);
+            //List<int> whitePieces = new List<int>();
+            //whitePieces.Add(3);
 
-            Console.WriteLine("Hello World!");
-            Console.ReadLine();
+            Information pawn = new Information();
+            pawn.setPosition(51);
+            pawn.setPieceType(2);
+            pawn.setTeamColor(1);
+            pawn.printInformation();
+
+            //Console.WriteLine("Hello World!");
+            //Console.ReadLine();
         }
 
         public void bar()
