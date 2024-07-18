@@ -29,7 +29,7 @@ public class PuzzleGenerator
         // If the selected scenario's rating is much lower than the target rating, add noise
         if (selectedScenario.Rating < TargetRating - marginOfError)
         {
-            AddNoise(selectedScenario.StartingPieces);
+            AddNoise(selectedScenario);
         }
 
         // Start the puzzle with the selected scenario
