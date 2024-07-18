@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public class PuzzleGenerator
 {
@@ -18,7 +20,7 @@ public class PuzzleGenerator
 
         if (!eligibleScenarios.Any())
         {
-            return null;
+            return;
         }
 
         Random random = new Random();
@@ -175,7 +177,7 @@ public class PuzzleGenerator
             Rating = 1100
         };
         s11.StartingPieces.Add(new Queen (62,0));
-        s11.CorrectMoves.Add(( << 0) | (4 << 6) | (0 << 9)); 
+        s11.CorrectMoves.Add(( 62<< 0) | (4 << 6) | (0 << 9)); 
         s11.CounterMoves.Add(); 
         ScenarioList.Add(s11);
 
@@ -197,7 +199,7 @@ public class PuzzleGenerator
         };
         s13.StartingPieces.Add(new Rook (39,0));
         
-        s13.CorrectMoves.Add(( << 0) | (1 << 6) | (0 << 9)); 
+        s13.CorrectMoves.Add(( 39<< 0) | (1 << 6) | (0 << 9)); 
         s13.CounterMoves.Add(); 
         ScenarioList.Add(s13);
 
@@ -230,7 +232,7 @@ public class PuzzleGenerator
         
     }
 
-    public void StartPuzzle()
+    public void StartPuzzle(Scenario SelectedScenario)
     {
        
     }
@@ -249,7 +251,7 @@ public class PuzzleGenerator
     }
     
 
-    public void AddNoise()
+    public void AddNoise(Scenario SelectedScenario)
     {
 
     }
