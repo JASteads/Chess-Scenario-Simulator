@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public class PuzzleGenerator
 {
@@ -10,13 +12,40 @@ public class PuzzleGenerator
 
     public Game GeneratePuzzle()
     {
-        return null; 
+        
+        int marginOfError = 100;
+
+        // Get a list of scenarios within the margin of error of the target rating
+        List<Scenario> eligibleScenarios = ScenarioList.Where(s => Math.Abs(s.Rating - TargetRating) <= marginOfError).ToList();
+
+        if (!eligibleScenarios.Any())
+        {
+            return null;
+        }
+
+        Random random = new Random();
+
+        Scenario selectedScenario = eligibleScenarios[random.Next(eligibleScenarios.Count)];
+
+        // If the selected scenario's rating is much lower than the target rating, add noise
+        if (selectedScenario.Rating < TargetRating - marginOfError)
+        {
+            AddNoise(selectedScenario.StartingPieces);
+        }
+
+        // Start the puzzle with the selected scenario
+        StartPuzzle(selectedScenario);
+
+        return Simulation;
     }
 
 
     public PuzzleGenerator()
     {
         ScenarioList = new List<Scenario>();
+        InitScenarioList();
+        TargetRating = 100; // Starting rating
+        Score = 0;
     }
 
     public void InitScenarioList()
@@ -150,7 +179,7 @@ public class PuzzleGenerator
             Rating = 1100
         };
         s11.StartingPieces.Add(new Queen (62,0));
-        s11.CorrectMoves.Add(( << 0) | (4 << 6) | (0 << 9)); 
+        s11.CorrectMoves.Add((62<< 0) | (4 << 6) | (0 << 9)); 
         s11.CounterMoves.Add(); 
         ScenarioList.Add(s11);
 
@@ -172,7 +201,7 @@ public class PuzzleGenerator
         };
         s13.StartingPieces.Add(new Rook (39,0));
         
-        s13.CorrectMoves.Add(( << 0) | (1 << 6) | (0 << 9)); 
+        s13.CorrectMoves.Add((39<< 0) | (1 << 6) | (0 << 9)); 
         s13.CounterMoves.Add(); 
         ScenarioList.Add(s13);
 
@@ -207,14 +236,23 @@ public class PuzzleGenerator
 
     public void StartPuzzle()
     {
-
+       
     }
    
     public void Update()
-    {
+    {       
+        Random random = new Random();
+        int increaseAmount = random.Next(50, 151); 
+        TargetRating += increaseAmount;
 
+        // Increment the score
+        Score++;
+
+
+        GeneratePuzzle();
     }
     
+
     public void AddNoise()
     {
 
