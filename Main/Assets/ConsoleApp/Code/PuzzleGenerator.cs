@@ -14,7 +14,7 @@ public class PuzzleGenerator
     {
         
         int marginOfError = 100;
-
+        s
         // Get a list of scenarios within the margin of error of the target rating
         List<Scenario> eligibleScenarios = ScenarioList.Where(s => Math.Abs(s.Rating - TargetRating) <= marginOfError).ToList();
 
@@ -251,11 +251,81 @@ public class PuzzleGenerator
 
     public void AddNoise(Scenario SelectedScenario)
     {
+        Random random = new Random();
+        
+        int noiseCount = random.Next(0, 5); 
 
+        // Keep track of occupied positions to avoid placing multiple pieces in the same position
+        HashSet<int> occupiedPositions = new HashSet<int>();
+
+        // Add positions of the starting pieces to the occupied positions
+        foreach (var piece in SelectedScenario.StartingPieces)
+        {
+            occupiedPositions.Add(piece.GetPosition(piece));
+        }
+
+        // Add noise pieces
+        for (int i = 0; i < noiseCount; i++)
+        {
+            int position;
+            do
+            {
+                position = random.Next(0, 64); // 0-63, maxvalue(64) is exclusive 
+            } while (occupiedPositions.Contains(position));
+
+            occupiedPositions.Add(position);
+
+            int pieceType = random.Next(0, 6);
+            int color = random.Next(0, 2);
+
+            Piece newPiece = null;
+            switch (pieceType)
+            {
+                case 0:
+                    SelectedScenario.StartingPieces.Add(new Pawn((ushort)position, (ushort)color));
+                    break;
+                case 1:
+                    SelectedScenario.StartingPieces.Add(new Knight((ushort)position, (ushort)color));
+                    break;
+                case 2:
+                    SelectedScenario.StartingPieces.Add(new Bishop((ushort)position, (ushort)color));
+                    break;
+                case 3:
+                    SelectedScenario.StartingPieces.Add(new Rook((ushort)position, (ushort)color));
+                    break;
+                case 4:
+                    SelectedScenario.StartingPieces.Add(new Queen((ushort)position, (ushort)color));
+                    break;
+                case 5:
+                    SelectedScenario.StartingPieces.Add(new King((ushort)position, (ushort)color));
+                    break;
+            }
+
+            if (newPiece != null)
+            {
+                SelectedScenario.StartingPieces.Add(newPiece);
+            }
+
+        }
+
+        // Simulate the next move in the scenario
+        foreach (var move in SelectedScenario.CorrectMoves)
+        {
+            int fromPosition = move & 63;
+            int toPosition = (move >> 6) & 63;
+
+            if (occupiedPositions.Contains(toPosition))
+            {
+                // If the move is obstructed by noise, remove the obstruction
+                SelectedScenario.StartingPieces.RemoveAll(piece => piece.GetPosition(piece) == toPosition);
+                occupiedPositions.Remove(toPosition);
+            }
+        }
     }
     
     public void OnMove()
     {
 
     }
+
 }
