@@ -1,6 +1,6 @@
 public class Knight:Piece
 {
-    public Bishop(ushort location, ushort team) : base(location, team)
+    public Knight(ushort location, ushort team) : base(location, team)
     {
         SetType(2);
     }

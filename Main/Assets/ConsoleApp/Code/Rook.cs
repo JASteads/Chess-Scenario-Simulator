@@ -1,5 +1,8 @@
 public class Rook:Piece
 {
+    public bool HasMoved;
+    public bool IsLeft;
+
     public Rook(ushort location, ushort team) : base(location, team)
     {
         SetType(1);
@@ -8,8 +11,6 @@ public class Rook:Piece
     {
         return true;
     }
-    public bool HasMoved;
-    public bool IsLeft;
-
+  
     public void TryCastle() { }
 }
