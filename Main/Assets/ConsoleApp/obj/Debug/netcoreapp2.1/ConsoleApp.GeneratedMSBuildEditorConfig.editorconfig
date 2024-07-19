@@ -1,3 +1,5 @@
 is_global = true
 build_property.RootNamespace = ConsoleApp
-build_property.ProjectDir = C:\Users\wwwpe\OneDrive\Documents\College\TXST\Summer 2024\Chess-Scenario-Simulator\Main\Assets\ConsoleApp\
+build_property.ProjectDir = C:\Users\hamma\Documents\GitHub\Chess-Scenario-Simulator\Main\Assets\ConsoleApp\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 

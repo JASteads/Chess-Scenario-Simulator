@@ -1,0 +1,9 @@
+C:\Users\hamma\Documents\GitHub\Chess-Scenario-Simulator\Main\bin\Debug\Main.exe.config
+C:\Users\hamma\Documents\GitHub\Chess-Scenario-Simulator\Main\bin\Debug\Main.exe
+C:\Users\hamma\Documents\GitHub\Chess-Scenario-Simulator\Main\bin\Debug\Main.pdb
+C:\Users\hamma\Documents\GitHub\Chess-Scenario-Simulator\Main\obj\Debug\Main.csproj.AssemblyReference.cache
+C:\Users\hamma\Documents\GitHub\Chess-Scenario-Simulator\Main\obj\Debug\Main.Properties.Resources.resources
+C:\Users\hamma\Documents\GitHub\Chess-Scenario-Simulator\Main\obj\Debug\Main.csproj.GenerateResource.cache
+C:\Users\hamma\Documents\GitHub\Chess-Scenario-Simulator\Main\obj\Debug\Main.csproj.CoreCompileInputs.cache
+C:\Users\hamma\Documents\GitHub\Chess-Scenario-Simulator\Main\obj\Debug\Main.exe
+C:\Users\hamma\Documents\GitHub\Chess-Scenario-Simulator\Main\obj\Debug\Main.pdb
