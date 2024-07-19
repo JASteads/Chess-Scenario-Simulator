@@ -46,6 +46,13 @@ public abstract class Piece
             information = (short)((information & ~(1 << 9)) | ((short)newTeam << 9));
         }
     }
+    public void SetInterception(ushort num)
+    {
+        if (num >= 0 && num <= 63)
+        {
+            information = (short)(num);
+        }
+    }
     /*public char[] Piece:NotateLocation()
     {
         char[] result = new char[2];    
