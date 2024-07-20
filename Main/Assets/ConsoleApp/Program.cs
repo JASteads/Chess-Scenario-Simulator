@@ -17,14 +17,21 @@ namespace Assets
             //List<int> whitePieces = new List<int>();
             //whitePieces.Add(3);
 
-            Information pawn = new Information();
-            pawn.setPosition(51);
-            pawn.setPieceType(2);
-            pawn.setTeamColor(1);
-            pawn.printInformation();
+           // Information pawn = new Information();
+           // pawn.setPosition(51);
+           // pawn.setPieceType(2);
+           // pawn.setTeamColor(1);
+           // pawn.printInformation();
 
-            //Console.WriteLine("Hello World!");
-            //Console.ReadLine();
+
+            Game myclass = new Game();
+            foreach(Piece item in myclass.WhitePieces)
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.WriteLine("Hello World!");
+            Console.ReadLine();
         }
 
         public void bar()
