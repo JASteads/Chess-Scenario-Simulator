@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 public class Game
 {
-    public List<Piece> WhitePieces;
-    public List<Piece> BlackPieces;
+    public List<Piece> WhitePieces = new List<Piece>();
+    public List<Piece> BlackPieces = new List<Piece>();
     public bool WhiteTurn;
     public bool IsActive;
 
@@ -17,12 +17,8 @@ public class Game
     { 
         // Start game with white going first
         WhiteTurn = true;
-
-        // Load pieces on the board
-        WhitePieces = new List<Piece>();
-        BlackPieces = new List<Piece>();
-
         
+        // Add pieces to the board
         WhitePieces.Add(new Rook (0, 0));
         WhitePieces.Add(new Rook (7, 0));
         WhitePieces.Add(new Knight (1, 0));
@@ -59,7 +55,14 @@ public class Game
 
 
     }
-    // public void SetBoard(List<Piece> pieces) {}
+     public void SetBoard(List<Piece> pieces) 
+     {
+        // Start game with white going first
+        WhiteTurn = true;
+
+        // Add pieces from the scenario
+ 
+     }
     public void SelectPiece(short loc) 
     {   
         Game wPiece = new Game();
@@ -69,20 +72,20 @@ public class Game
         // if WhiteTurn is false, verify the piece is black, then check all possible movements
                 while(loc > 0 && loc < 63)
                 {
-                    if(WhiteTurn = true)
+                    if(WhiteTurn == true)
                     {
                         // check to see if it is a white piece
                         
 
                     }
-                    else if(WhiteTurn = false)
+                    else if(WhiteTurn == false)
                     {
                        // check to see if it is a black piece  
                       
                     }
                     else
                     {
-                        // the location slected has no piece so do nothing
+                        // the location selected has no piece so do nothing
                     }
                 }
     }
