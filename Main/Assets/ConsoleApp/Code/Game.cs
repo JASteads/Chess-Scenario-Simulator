@@ -61,7 +61,9 @@ public class Game
         WhiteTurn = true;
 
         // Add pieces from the scenario
- 
+        WhitePieces.AddRange(pieces);
+        BlackPieces.AddRange(pieces);
+
      }
     public void SelectPiece(short loc) 
     {   
