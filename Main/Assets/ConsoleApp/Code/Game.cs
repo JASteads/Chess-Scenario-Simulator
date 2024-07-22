@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Security;
 
 
 public class Game
@@ -17,6 +18,7 @@ public class Game
     { 
         // Start game with white going first
         WhiteTurn = true;
+        IsActive = true;
         
         // Add pieces to the board
         WhitePieces.Add(new Rook (0, 0));
@@ -59,6 +61,7 @@ public class Game
     {
         // Start game with white going first
         WhiteTurn = true;
+        IsActive = true;
 
         // Add pieces from the scenario
         for(int i = 0; i < pieces.Count; i++)
@@ -72,38 +75,49 @@ public class Game
                 BlackPieces.Add(pieces[i]);
             }
         }
- 
-
     }
-    public void SelectPiece(short loc) 
+    public void SelectPiece(ushort loc) 
     {   
-        Game wPiece = new Game();
-        Game bPiece = new Game();
         // if a valid location is selected, check and see if a piece is occupying the space
-        // if WhiteTurn is true, verify the piece is white, select the piece, and check all possible movements
-        // if WhiteTurn is false, verify the piece is black, then check all possible movements
+        // if WhiteTurn is true, verify the piece is white
+        // if WhiteTurn is false, verify the piece is black
         while(loc > 0 && loc < 63)
         {
             if(WhiteTurn == true)
             {
                 // check to see if it is a white piece
-                
-
+                for(int i = 0; i < WhitePieces.Count; i++)
+                {
+                    if(WhitePieces[i].GetPosition() == loc)
+                    {
+                        // check all possible movements
+                        WhitePieces[i].CheckMoves();
+                    }
+                }
             }
             else if(WhiteTurn == false)
             {
                 // check to see if it is a black piece  
-                
+                for(int i = 0; i < BlackPieces.Count; i++)
+                {
+                    if(BlackPieces[i].GetPosition() == loc)
+                    {
+                        // check all possible movements
+                        BlackPieces[i].CheckMoves();
+                    }
+                }
             }
             else
             {
                 // the location selected has no piece so do nothing
+                break;
             }
         }
     }
-    public void OnMove(Piece p, short loc) 
+    public void OnMove(Piece p, ushort loc) 
     {
-
+       filterMoves();
+       p.SetPosition(loc);
     }
 
 }
