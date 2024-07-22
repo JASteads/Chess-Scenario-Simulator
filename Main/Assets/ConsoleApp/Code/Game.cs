@@ -55,16 +55,26 @@ public class Game
 
 
     }
-     public void SetBoard(List<Piece> pieces) 
-     {
+    public void SetBoard(List<Piece> pieces) 
+    {
         // Start game with white going first
         WhiteTurn = true;
 
         // Add pieces from the scenario
-        WhitePieces.AddRange(pieces);
-        BlackPieces.AddRange(pieces);
+        for(int i = 0; i < pieces.Count; i++)
+        {
+            if(pieces[i].GetTeam() == 0)
+            {
+                WhitePieces.Add(pieces[i]);
+            }
+            else
+            {
+                BlackPieces.Add(pieces[i]);
+            }
+        }
+ 
 
-     }
+    }
     public void SelectPiece(short loc) 
     {   
         Game wPiece = new Game();
@@ -72,24 +82,24 @@ public class Game
         // if a valid location is selected, check and see if a piece is occupying the space
         // if WhiteTurn is true, verify the piece is white, select the piece, and check all possible movements
         // if WhiteTurn is false, verify the piece is black, then check all possible movements
-                while(loc > 0 && loc < 63)
-                {
-                    if(WhiteTurn == true)
-                    {
-                        // check to see if it is a white piece
-                        
+        while(loc > 0 && loc < 63)
+        {
+            if(WhiteTurn == true)
+            {
+                // check to see if it is a white piece
+                
 
-                    }
-                    else if(WhiteTurn == false)
-                    {
-                       // check to see if it is a black piece  
-                      
-                    }
-                    else
-                    {
-                        // the location selected has no piece so do nothing
-                    }
-                }
+            }
+            else if(WhiteTurn == false)
+            {
+                // check to see if it is a black piece  
+                
+            }
+            else
+            {
+                // the location selected has no piece so do nothing
+            }
+        }
     }
     public void OnMove(Piece p, short loc) 
     {
