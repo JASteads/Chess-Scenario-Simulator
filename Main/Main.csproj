@@ -8,10 +8,11 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>Main</RootNamespace>
     <AssemblyName>Main</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -56,6 +57,7 @@
     <Compile Include="MainMenuUI.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PuzzleUI.cs" />
     <Compile Include="UserInterface.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -68,6 +70,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -81,6 +84,42 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Graphics\Bishop_B.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Graphics\Bishop_W.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Graphics\King_B.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Graphics\King_W.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Graphics\Knight_B.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Graphics\Knight_W.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Graphics\Pawn_B.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Graphics\Pawn_W.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Graphics\Queen_B.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Graphics\Queen_W.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Graphics\Rook_B.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Graphics\Rook_W.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

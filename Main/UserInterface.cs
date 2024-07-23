@@ -1,17 +1,18 @@
-﻿using System.Windows.Forms;
+﻿using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
 
 public abstract class UserInterface
 {
-    protected Panel panel;
+    protected List<Control> controls;
 
     public UserInterface()
     {
-        panel = new Panel();
-        panel.SuspendLayout();
+        controls = new List<Control>();
     }
 
-    public Panel GetPanel()
+    public List<Control> GetControls()
     {
-        return panel;
+        return controls;
     }
 }

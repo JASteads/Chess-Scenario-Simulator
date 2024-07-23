@@ -20,6 +20,14 @@ public class BoardUI : UserInterface
     void SelectTile(int pos)
     {
         Console.WriteLine(pos + 1);
+        ChangeTurn();
+    }
+
+    void ChangeTurn()
+    {
+        string turn = currentTurnLabel.Text.Substring(0, 5);
+        currentTurnLabel.Text = turn == "Black" ?
+            "White turn" : "Black turn";
     }
 
     void Init(EventHandler hEvent)
@@ -27,10 +35,7 @@ public class BoardUI : UserInterface
         const int TILE_SIZE = 70;
         Point tileStart = new Point (360, 550),
               turnLabelPos = new Point(985, 230);
-
-        panel.Location = new Point(12, 12);
-        panel.Name = "panel";
-        panel.Size = new Size(1240, 657);
+        Font  noteFont = new Font("Soopafresh", 16F);
 
         // Generate tile buttons
         for (int i = 0; i < 64; i++)
@@ -64,7 +69,7 @@ public class BoardUI : UserInterface
             tile.UseVisualStyleBackColor = false;
             tile.Click += (s, e) => SelectTile(position);
             tile.TabStop = false;
-            panel.Controls.Add(tile);
+            controls.Add(tile);
         }
 
         // Generate alphabetical markers
@@ -76,7 +81,7 @@ public class BoardUI : UserInterface
             Label symbol = new Label();
             symbol.AutoSize = true;
             symbol.BackColor = Color.Transparent;
-            symbol.Font = new Font("Soopafresh", 16F);
+            symbol.Font = noteFont;
             symbol.ForeColor = Color.White;
             symbol.Location =
                 new Point(xPos, tileStart.Y + 80);
@@ -84,7 +89,7 @@ public class BoardUI : UserInterface
             symbol.Name = $"Symbol {c}";
             symbol.Size = new Size(25, 27);
             symbol.Text = c.ToString();
-            panel.Controls.Add(symbol);
+            controls.Add(symbol);
         }
 
         // Generate numeric markers
@@ -97,7 +102,7 @@ public class BoardUI : UserInterface
             Label symbol = new Label();
             symbol.AutoSize = true;
             symbol.BackColor = Color.Transparent;
-            symbol.Font = new Font("Soopafresh", 16F);
+            symbol.Font = noteFont;
             symbol.ForeColor = Color.White;
             symbol.Location =
                 new Point(315, yPos);
@@ -105,7 +110,7 @@ public class BoardUI : UserInterface
             symbol.Name = $"Symbol {index}";
             symbol.Size = new Size(25, 27);
             symbol.Text = $"{index}";
-            panel.Controls.Add(symbol);
+            controls.Add(symbol);
         }
 
         // Generate home button
@@ -117,11 +122,10 @@ public class BoardUI : UserInterface
         homeButton.Font =
             new Font("Soopafresh", 24F);
         homeButton.ForeColor = Color.White;
-        homeButton.Location = new Point(69, 59);
+        homeButton.Location = new Point(70, 59);
         homeButton.Margin = new Padding(60, 50, 60, 60);
         homeButton.Name = "homeButton";
-        homeButton.Size = new Size(177, 55);
-        homeButton.TabIndex = 72;
+        homeButton.Size = new Size(180, 55);
         homeButton.Text = "HOME";
         homeButton.Click += hEvent;
         homeButton.UseVisualStyleBackColor = true;
@@ -134,23 +138,21 @@ public class BoardUI : UserInterface
         currentTurnLabel.Location = turnLabelPos;
         currentTurnLabel.Name = "Current Turn Label";
         currentTurnLabel.Size = new Size(192, 39);
-        currentTurnLabel.TabIndex = 89;
         currentTurnLabel.Text = "White Turn";
+        currentTurnLabel.AutoSize = false;
+        currentTurnLabel.TextAlign = ContentAlignment.MiddleCenter;
 
         // Generate bar below turn label
         PictureBox bar = new PictureBox();
         bar.BackColor = Color.White;
-        bar.Location = 
+        bar.Location =
             new Point(turnLabelPos.X + 3, turnLabelPos.Y + 45);
-        bar.Name = "Turn Bar";
+        bar.Name = $"Turn Bar";
         bar.Size = new Size(185, 5);
         bar.TabStop = false;
 
-        panel.Controls.Add(homeButton);
-        panel.Controls.Add(currentTurnLabel);
-        panel.Controls.Add(bar);
-
-        panel.ResumeLayout(false);
-        panel.PerformLayout();
+        controls.Add(homeButton);
+        controls.Add(currentTurnLabel);
+        controls.Add(bar);
     }
 }

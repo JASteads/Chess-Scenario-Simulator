@@ -27,19 +27,17 @@ public class MainMenuUI : UserInterface
     void Init(EventHandler sEvent,
         EventHandler pEvent, EventHandler qEvent)
     {
+        Font buttonFont = new Font("Microsoft Sans Serif", 24F);
+
         // 
         // panel
         // 
-        panel.Controls.Add(hiScoreText);
-        panel.Controls.Add(authorsLabel);
-        panel.Controls.Add(title);
-        panel.Controls.Add(quitButton);
-        panel.Controls.Add(puzzleButton);
-        panel.Controls.Add(standardButton);
-        panel.Location = new Point(12, 12);
-        panel.Name = "panel";
-        panel.Size = new Size(1240, 657);
-        panel.TabIndex = 4;
+        controls.Add(hiScoreText);
+        controls.Add(authorsLabel);
+        controls.Add(title);
+        controls.Add(quitButton);
+        controls.Add(puzzleButton);
+        controls.Add(standardButton);
         // 
         // hiScoreText
         // 
@@ -57,9 +55,9 @@ public class MainMenuUI : UserInterface
         // 
         authorsLabel.Anchor = ((AnchorStyles)((AnchorStyles.Bottom | AnchorStyles.Right)));
         authorsLabel.AutoSize = true;
-        authorsLabel.Font = new Font("Soopafresh", 12F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+        authorsLabel.Font = new Font("Soopafresh", 12F);
         authorsLabel.ForeColor = Color.White;
-        authorsLabel.Location = new Point(786, 635);
+        authorsLabel.Location = new Point(786, 680);
         authorsLabel.Margin = new Padding(5);
         authorsLabel.Name = "authorsLabel";
         authorsLabel.Size = new Size(452, 20);
@@ -83,7 +81,7 @@ public class MainMenuUI : UserInterface
         // quitButton
         // 
         quitButton.Anchor = AnchorStyles.None;
-        quitButton.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+        quitButton.Font = new Font("Microsoft Sans Serif", 24F);
         quitButton.Location = new Point(451, 506);
         quitButton.Name = "quitButton";
         quitButton.Size = new Size(360, 82);
@@ -95,7 +93,7 @@ public class MainMenuUI : UserInterface
         // puzzleButton
         // 
         puzzleButton.Anchor = AnchorStyles.None;
-        puzzleButton.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+        puzzleButton.Font = buttonFont;
         puzzleButton.Location = new Point(451, 418);
         puzzleButton.Name = "puzzleButton";
         puzzleButton.Size = new Size(360, 82);
@@ -107,7 +105,7 @@ public class MainMenuUI : UserInterface
         // standardButton
         // 
         standardButton.Anchor = AnchorStyles.None;
-        standardButton.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+        standardButton.Font = buttonFont;
         standardButton.Location = new Point(451, 332);
         standardButton.Name = "standardButton";
         standardButton.Size = new Size(360, 80);
@@ -115,8 +113,5 @@ public class MainMenuUI : UserInterface
         standardButton.Text = "Start Standard";
         standardButton.UseVisualStyleBackColor = true;
         standardButton.Click += sEvent;
-
-        panel.ResumeLayout(false);
-        panel.PerformLayout();
     }
 }
