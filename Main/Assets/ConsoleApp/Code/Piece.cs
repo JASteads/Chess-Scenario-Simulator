@@ -1,14 +1,68 @@
+using System;
+using System.Data.Common;
+using System.Threading;
+
 public abstract class Piece
 {
-    // public Graphic image;
-    public short information;
 
-    public abstract bool CheckMoves()
+    protected short information = 0;
+    public Piece(ushort location, ushort team)
     {
-        return true;
+        SetPosition(location);
+        SetTeam(team);
     }
 
 
+    public int GetPosition(Piece p)
+    {
+        return p.information & 63;
+    }
+    public int GetType(Piece p)
+    {
+        return (p.information >> 6) & 7;
+    }
+    public int GetTeam(Piece p)
+    {
+        return (p.information >> 9) & 1;
+    }
+    public void SetPosition(ushort newPos)
+    {
+        if (newPos >= 0 && newPos <= 63)
+        {
+            information = (short)((information & ~63) | newPos);
+        }
+    }
+    public void SetType(int newType)
+    {
+        if (newType >= 0 && newType <= 5)
+        {
+            information = (short)((information & ~(7 << 6)) | ((short)newType << 6));
+        }
+    }
+    public void SetTeam(int newTeam)
+    {   
+        if(newTeam >= 0 && newTeam <= 1)
+        {
+            information = (short)((information & ~(1 << 9)) | ((short)newTeam << 9));
+        }
+    }
+    /*public char[] Piece:NotateLocation()
+    {
+        char[] result = new char[2];    
+        int pos = GetPosition() + 1; // returns 3
+
+        int letterNum = (pos / 8) + 1; // 1
+        int valueNum = pos % 8;  // 3
+        
+        result[0] = (char)((int)'A' + letterNum);   
+        result[1] = (char)((int)'1' + valueNum);
+
+        return result;
+    }
+    */
+
+     public abstract bool CheckMoves();
+  
     public void Move()
     {
 
@@ -18,4 +72,5 @@ public abstract class Piece
     {
 
     }
+    
 }

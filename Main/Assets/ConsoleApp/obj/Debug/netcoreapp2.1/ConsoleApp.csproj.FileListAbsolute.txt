@@ -9,3 +9,11 @@ C:\Users\Machine\Documents\Chess-Scenario-Simulator\Main\Assets\ConsoleApp\obj\D
 C:\Users\Machine\Documents\Chess-Scenario-Simulator\Main\Assets\ConsoleApp\obj\Debug\netcoreapp2.1\ConsoleApp.AssemblyInfo.cs
 C:\Users\Machine\Documents\Chess-Scenario-Simulator\Main\Assets\ConsoleApp\obj\Debug\netcoreapp2.1\ConsoleApp.dll
 C:\Users\Machine\Documents\Chess-Scenario-Simulator\Main\Assets\ConsoleApp\obj\Debug\netcoreapp2.1\ConsoleApp.pdb
+C:\Users\hamma\Documents\GitHub\Chess-Scenario-Simulator\Main\Assets\ConsoleApp\obj\Debug\netcoreapp2.1\ConsoleApp.csproj.AssemblyReference.cache
+C:\Users\hamma\Documents\GitHub\Chess-Scenario-Simulator\Main\Assets\ConsoleApp\obj\Debug\netcoreapp2.1\ConsoleApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hamma\Documents\GitHub\Chess-Scenario-Simulator\Main\Assets\ConsoleApp\obj\Debug\netcoreapp2.1\ConsoleApp.AssemblyInfoInputs.cache
+C:\Users\hamma\Documents\GitHub\Chess-Scenario-Simulator\Main\Assets\ConsoleApp\obj\Debug\netcoreapp2.1\ConsoleApp.AssemblyInfo.cs
+C:\Users\hamma\Documents\GitHub\Chess-Scenario-Simulator\Main\Assets\ConsoleApp\obj\Debug\netcoreapp2.1\ConsoleApp.csproj.CoreCompileInputs.cache
+C:\Users\hamma\Documents\GitHub\Chess-Scenario-Simulator\Main\Assets\ConsoleApp\obj\Debug\netcoreapp2.1\ConsoleApp.sourcelink.json
+C:\Users\hamma\Documents\GitHub\Chess-Scenario-Simulator\Main\Assets\ConsoleApp\obj\Debug\netcoreapp2.1\ConsoleApp.dll
+C:\Users\hamma\Documents\GitHub\Chess-Scenario-Simulator\Main\Assets\ConsoleApp\obj\Debug\netcoreapp2.1\ConsoleApp.pdb
