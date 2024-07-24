@@ -13,17 +13,17 @@ public abstract class Piece
     }
 
 
-    public int GetPosition(Piece p)
+    public int GetPosition()
     {
-        return p.information & 63;
+        return information & 63;
     }
-    public int GetType(Piece p)
+    public int GetType()
     {
-        return (p.information >> 6) & 7;
+        return (information >> 6) & 7;
     }
-    public int GetTeam(Piece p)
+    public int GetTeam()
     {
-        return (p.information >> 9) & 1;
+        return (information >> 9) & 1;
     }
     public void SetPosition(ushort newPos)
     {
@@ -44,6 +44,13 @@ public abstract class Piece
         if(newTeam >= 0 && newTeam <= 1)
         {
             information = (short)((information & ~(1 << 9)) | ((short)newTeam << 9));
+        }
+    }
+    public void SetInterception(ushort num)
+    {
+        if (num >= 0 && num <= 63)
+        {
+            information = (short)(num);
         }
     }
     /*public char[] Piece:NotateLocation()

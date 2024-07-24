@@ -1,6 +1,6 @@
 public class Queen:Piece
 {
-    public Bishop(ushort location, ushort team) : base(location, team)
+    public Queen(ushort location, ushort team) : base(location, team)
     {
         SetType(4);
     }
