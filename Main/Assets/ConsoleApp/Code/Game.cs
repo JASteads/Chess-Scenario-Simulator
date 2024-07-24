@@ -4,18 +4,26 @@ using System.Security;
 
 public class Game
 {
-    public List<Piece> WhitePieces = new List<Piece>();
-    public List<Piece> BlackPieces = new List<Piece>();
-    public bool WhiteTurn;
-    public bool IsActive;
+    public List<Piece> WhitePieces, BlackPieces;
+    public bool WhiteTurn, IsActive;
 
-    public void filterMoves()
+    Piece selectedPiece;
+    List<short> activeMoveList;
+
+    public Game()
     {
+        WhitePieces = new List<Piece>();
+        BlackPieces = new List<Piece>();
+        activeMoveList = new List<short>();
+    }
 
+    public List<short> FilterMoves(List<short> m)
+    {
+        return m;
     }
 
     public void SetBoard() 
-    { 
+    {
         // Start game with white going first
         WhiteTurn = true;
         IsActive = true;
@@ -29,14 +37,8 @@ public class Game
         WhitePieces.Add(new Bishop (5, 0));
         WhitePieces.Add(new Queen (3, 0));
         WhitePieces.Add(new King (4, 0));
-        WhitePieces.Add(new Pawn (8, 0));
-        WhitePieces.Add(new Pawn (9, 0));
-        WhitePieces.Add(new Pawn (10, 0));
-        WhitePieces.Add(new Pawn (11, 0));
-        WhitePieces.Add(new Pawn (12, 0));
-        WhitePieces.Add(new Pawn (13, 0));
-        WhitePieces.Add(new Pawn (14, 0));
-        WhitePieces.Add(new Pawn (15, 0));
+        for (int i = 8; i < 16; i++)
+            WhitePieces.Add(new Pawn (i, 0));
        
         BlackPieces.Add(new Rook (56, 1));
         BlackPieces.Add(new Rook (63, 1));
@@ -46,16 +48,8 @@ public class Game
         BlackPieces.Add(new Bishop (61, 1));
         BlackPieces.Add(new Queen (59, 1));
         BlackPieces.Add(new King (60, 1));
-        BlackPieces.Add(new Pawn (48, 1));
-        BlackPieces.Add(new Pawn (49, 1));
-        BlackPieces.Add(new Pawn (50, 1));
-        BlackPieces.Add(new Pawn (51, 1));
-        BlackPieces.Add(new Pawn (52, 1));
-        BlackPieces.Add(new Pawn (53, 1));
-        BlackPieces.Add(new Pawn (54, 1));
-        BlackPieces.Add(new Pawn (55, 1));
-
-
+        for (int i = 48; i < 56; i++)
+            BlackPieces.Add(new Pawn (i, 1));
     }
     public void SetBoard(List<Piece> pieces) 
     {
@@ -78,46 +72,39 @@ public class Game
     }
     public void SelectPiece(ushort loc) 
     {   
-        // if a valid location is selected, check and see if a piece is occupying the space
-        // if WhiteTurn is true, verify the piece is white
-        // if WhiteTurn is false, verify the piece is black
-        while(loc > 0 && loc < 63)
+        Piece target;
+        List<short> moves = new List<short>();
+        
+        // if an invalid location is selected, do nothing
+        if (loc < 0 || loc > 63) return;
+        
+        if (selectedPiece != null)
         {
-            if(WhiteTurn == true)
-            {
-                // check to see if it is a white piece
-                for(int i = 0; i < WhitePieces.Count; i++)
-                {
-                    if(WhitePieces[i].GetPosition() == loc)
-                    {
-                        // check all possible movements
-                        WhitePieces[i].CheckMoves();
-                    }
-                }
-            }
-            else if(WhiteTurn == false)
-            {
-                // check to see if it is a black piece  
-                for(int i = 0; i < BlackPieces.Count; i++)
-                {
-                    if(BlackPieces[i].GetPosition() == loc)
-                    {
-                        // check all possible movements
-                        BlackPieces[i].CheckMoves();
-                    }
-                }
-            }
-            else
-            {
-                // the location selected has no piece so do nothing
-                break;
-            }
+            
         }
+
+        moves = TryGetRawMoves(
+            (WhiteTurn ? WhitePieces : BlackPieces), loc);
+        activeMoveList = FilterMoves(moves);
+        
+        
     }
     public void OnMove(Piece p, ushort loc) 
     {
        filterMoves();
        p.SetPosition(loc);
+    }
+
+    /* Attempts to find a piece from pieces at the given location.
+     * if found, return a list of its unfiltered moves.
+     */
+    List<short> TryGetRawMoves(List<Piece> pieces, short loc)
+    {
+        for (int i = 0; i < pieces.Count; i++)
+        {
+            if (pieces[i].GetPosition() == loc)
+                return pieces[i].CheckMoves();
+        }
     }
 
 }

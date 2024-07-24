@@ -258,7 +258,7 @@ public class PuzzleGenerator
         // Add positions of the starting pieces to the occupied positions
         foreach (var piece in SelectedScenario.StartingPieces)
         {
-            occupiedPositions.Add(piece.GetPosition(piece));
+            occupiedPositions.Add(piece.GetPosition());
         }
 
 
@@ -268,37 +268,37 @@ public class PuzzleGenerator
         // Add noise pieces
         for (int i = 0; i < noiseCount; i++)
         {
-            int position;
+            short position;
             do
             {
-                position = random.Next(0, 64); // 0-63, maxvalue(64) is exclusive 
+                position = (short)random.Next(0, 64); // 0-63, maxvalue(64) is exclusive 
             } while (occupiedPositions.Contains(position));
 
             occupiedPositions.Add(position);
 
-            int pieceType = random.Next(0, 6);
-            int color = random.Next(0, 2);
+            int pieceType = random.Next(0, 4);
+            short color = (short)random.Next(0, 1);
 
             Piece newPiece = null;
             switch (pieceType)
             {
                 case 0:
-                    SelectedScenario.StartingPieces.Add(new Pawn((ushort)position, (ushort)color));
+                    SelectedScenario.StartingPieces.Add(new Pawn(position, color));
                     break;
                 case 1:
-                    SelectedScenario.StartingPieces.Add(new Knight((ushort)position, (ushort)color));
+                    SelectedScenario.StartingPieces.Add(new Knight(position, color));
                     break;
                 case 2:
-                    SelectedScenario.StartingPieces.Add(new Bishop((ushort)position, (ushort)color));
+                    SelectedScenario.StartingPieces.Add(new Bishop(position, color));
                     break;
                 case 3:
-                    SelectedScenario.StartingPieces.Add(new Rook((ushort)position, (ushort)color));
+                    SelectedScenario.StartingPieces.Add(new Rook(position, color));
                     break;
                 case 4:
-                    SelectedScenario.StartingPieces.Add(new Queen((ushort)position, (ushort)color));
+                    SelectedScenario.StartingPieces.Add(new Queen(position, color));
                     break;
                 case 5:
-                    SelectedScenario.StartingPieces.Add(new King((ushort)position, (ushort)color));
+                    SelectedScenario.StartingPieces.Add(new King(position, color));
                     break;
             }
 
@@ -318,7 +318,7 @@ public class PuzzleGenerator
 
             foreach (var noisePiece in noisePieces)
             {
-                if (IsMoveObstructed(fromPosition, toPosition, noisePiece.GetPosition(noisePiece)))
+                if (IsMoveObstructed(fromPosition, toPosition, noisePiece.GetPosition()))
                 {
                     // Handle the obstruction by removing or demoting the noise piece
                     SelectedScenario.StartingPieces.Remove(noisePiece);

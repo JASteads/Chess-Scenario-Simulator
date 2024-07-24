@@ -1,13 +1,15 @@
+using System.Collections.Generic;
+
 public class Bishop:Piece
 {
-    public Bishop(ushort location, ushort team) : base(location, team)
+    public Bishop(short location, short team) : base(location, team)
     {
-        SetType(3);
-    }
-    public override bool CheckMoves()
-    {
-        return true;
+        SetKind(3);
     }
 
+    public override List<short> CheckMoves()
+    {
+        return null;
+    }
 }
     

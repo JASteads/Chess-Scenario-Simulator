@@ -1,20 +1,18 @@
+using System.Collections.Generic;
+
 public class King:Piece
 {
-    
+    public bool HasMoved, IsChecked;
 
-        public King(ushort location, ushort team) : base(location, team)
-        {
-            SetType(5);
-        }
-        public override bool CheckMoves()
-        {
-            return true;
-        }
+    public King(short location, short team) : base(location, team)
+    {
+        SetKind(5);
+    }
 
-
-    public bool HasMoved;
-    public bool IsChecked;
+    public override List<short> CheckMoves()
+    {
+        return null;
+    }
 
     public void TryCastle() { }
-
 }

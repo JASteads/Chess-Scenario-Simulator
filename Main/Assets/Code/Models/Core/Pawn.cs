@@ -1,13 +1,17 @@
+using System.Collections.Generic;
+
 public class Pawn:Piece
 {
-    public Pawn(ushort location, ushort team) : base(location, team)
+    public Pawn(short location, short team) : base(location, team)
     {
-        SetType(0);
+        SetKind(0);
     }
-    public override bool CheckMoves()
+
+    public override List<short> CheckMoves()
     {
-        return true;
+        return null;
     }
+
     public void Promote() { }
     public void CanEnPassant() { }
 }
