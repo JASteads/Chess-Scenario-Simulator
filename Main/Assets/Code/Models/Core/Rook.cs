@@ -9,7 +9,7 @@ public class Rook:Piece
         SetKind(1);
     }
 
-    public override List<short> CheckMoves()
+    public override List<List<short>> CheckMoves()
     {
         return null;
     }

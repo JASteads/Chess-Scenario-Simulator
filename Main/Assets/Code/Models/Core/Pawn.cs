@@ -7,7 +7,7 @@ public class Pawn:Piece
         SetKind(0);
     }
 
-    public override List<short> CheckMoves()
+    public override List<List<short>> CheckMoves()
     {
         return null;
     }

@@ -60,7 +60,7 @@ public abstract class Piece
         return result.ToString();
     }
     
-    public abstract List<short> CheckMoves();
+    public abstract List<List<short>> CheckMoves();
   
     public void Move()
     {

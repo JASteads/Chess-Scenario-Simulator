@@ -7,7 +7,8 @@ public class Game
 
     Piece selectedPiece;
     King wKing, bKing;
-    List<short> activeMoveList, wKingAttacks, bKingAttacks;
+    List<short> activeMoveList;
+    List<List<short>> wKingAttacks, bKingAttacks;
 
     public Game()
     {
@@ -15,19 +16,6 @@ public class Game
         blackPieces = new List<Piece>();
 
         activeMoveList = new List<short>();
-    }
-
-    public List<short> FilterMoves(List<short> m)
-    {
-        // General filter
-
-
-
-        // Attack vector filter
-
-
-
-        return m;
     }
 
     public void SetBoard()
@@ -89,8 +77,6 @@ public class Game
 
     public void SelectTile(short loc)
     {
-        List<short> moves; // This will store unfiltered moves
-
         // if an invalid location is selected, do nothing
         if (loc < 0 || loc > 63) return;
 
@@ -112,12 +98,11 @@ public class Game
             }
 
         // Attempt to find a piece at this position and its raw moves
-        moves = TryGetRawMoves(
-            (whiteTurn ? whitePieces : blackPieces),
-            loc, out selectedPiece);
+        selectedPiece = FindPiece(
+            (whiteTurn ? whitePieces : blackPieces), loc);
 
         // Filter out illegal moves from the raw ones, store the rest
-        activeMoveList = FilterMoves(moves);
+        activeMoveList = FilterMoves(selectedPiece);
     }
 
     public void OnMove(short loc)
@@ -136,15 +121,15 @@ public class Game
         // Pawn logic
         if (selectedPiece.GetKind() == 0)
         {
-            int pos = selectedPiece.GetPosition();
+            int row = selectedPiece.GetPosition() / 8;
 
-            // If on white team and on the other side of the board
-            if (selectedPiece.GetTeam() == 0 && 
-                (pos / 8 == 7))
-            {
-                // Promote to queen as a default for now
+            /* If on white team and on the other side of the board.
+             * Promote to queen as a default for now
+             */
+            if (whiteTurn && row == 7)
                 selectedPiece.SetKind(4);
-            }
+            else if (!whiteTurn && row == 0)
+                selectedPiece.SetKind(4);
         }
 
         OnMoveEnd();
@@ -157,6 +142,9 @@ public class Game
 
     void OnMoveEnd()
     {
+        // Update the attack vectors of the current team
+        UpdateKingAttack();
+
         // See if a king is in trouble
         CheckForKing(whiteTurn ? bKing : wKing);
 
@@ -166,7 +154,7 @@ public class Game
 
     void CheckForKing(King k)
     {
-        if (FilterMoves(k.CheckMoves()).Count == 0)
+        if (FilterMoves(k).Count == 0)
             if (CheckForEnd(whiteTurn ? blackPieces : whitePieces))
                 OnGameEnd(k.IsChecked ? true : false);
     }
@@ -175,7 +163,7 @@ public class Game
     {
         foreach (Piece p in team)
         {
-            if (FilterMoves(p.CheckMoves()).Count > 0)
+            if (FilterMoves(p).Count > 0)
                 return false;
         }
 
@@ -187,20 +175,159 @@ public class Game
 
     }
 
-    /* Attempts to find a piece from pieces at the given location.
-     * if found, return a list of its unfiltered moves.
-     */
-    List<short> TryGetRawMoves(
-        List<Piece> pieces, short loc, out Piece target)
+    // Attempts to return a piece from pieces at the given location
+    Piece FindPiece(List<Piece> pieces, short loc)
     {
-        target = null;
-
         for (int i = 0; i < pieces.Count; i++)
             if (pieces[i].GetPosition() == loc)
+                return pieces[i];
+
+        return null;
+    }
+
+    void UpdateKingAttack()
+    {
+        if (whiteTurn)
+            bKingAttacks = FindAttackVectors(bKing, whitePieces);
+        else
+            wKingAttacks = FindAttackVectors(wKing, blackPieces);
+    }
+
+    // Returns all tiles that create a line of sight on the given king
+    List<List<short>> FindAttackVectors(King k, List<Piece> team)
+    {
+        short kPos = (short)k.GetPosition();
+
+        List<List<short>> result = new List<List<short>>();
+
+        foreach (Piece p in team)
+        {
+            List<int> indeces = new List<int>();
+
+            // Get a list of all possible paths
+            List<List<short>> attackVectors = p.CheckMoves();
+
+            // Exclude all paths that don't include the enemy king
+            for (int i = 0; i < attackVectors.Count; i++)
             {
-                target = pieces[i];
-                return pieces[i].CheckMoves();
+                if (!attackVectors[i].Contains(kPos))
+                    indeces.Add(i);
             }
+            indeces.Reverse();
+
+            foreach (int i in indeces)
+                attackVectors.RemoveAt(i);
+
+            result.AddRange(attackVectors);
+        }
+
+        return result;
+    }
+
+    List<short> FilterMoves(Piece p)
+    {
+        // Setup
+
+        List<List<short>> fMoves = p.CheckMoves(), oppAttacks;
+        List<Piece> oppTeam, allyTeam;
+
+        if (p.GetTeam() == 0)
+        {
+            allyTeam = whitePieces;
+            oppTeam = blackPieces;
+            oppAttacks = bKingAttacks;
+        }
+        else
+        {
+            allyTeam = blackPieces;
+            oppTeam = whitePieces;
+            oppAttacks = wKingAttacks;
+        }
+
+
+        // GENERAL FILTER
+
+        // Check each vector for an intercepting piece on either team
+        fMoves.ForEach(v =>
+        {
+            int interception = v.Count;
+
+            // Check enemy pieces
+            for (int i = 0; i < v.Count; i++)
+            {
+                if (oppTeam.Find(
+                    op => op.GetPosition() == v[i]) != null)
+                {
+                    interception = i;
+                    break;
+                }
+            }
+
+            // Check ally pieces. These have higher priority
+            for (int i = 0; i < v.Count; i++)
+            {
+                if (allyTeam.Find(
+                    ally => ally.GetPosition() == v[i]) != null)
+                {
+                    if (i <= interception)
+                        interception = i - 1;
+                    break;
+                }
+            }
+
+            for (int i = v.Count - 1; i > interception; i--)
+            {
+                v.Remove(v[i]);
+            }
+        });
+
+
+        // ATTACK VECTORS FILTER
+
+        List<int> unsafeIndeces = new List<int>();
+
+        for (int i = 0; i <= fMoves.Count; i++)
+        {
+            List<short> v = fMoves[i];
+
+            // Check each tile in a line for an attack vector
+            for (int j = 0; j < v.Count; j++)
+            {
+                // Find attack vector if any
+                List<short> aVector = oppAttacks.Find(av =>
+                {
+                    return av.Contains(v[j]);
+                });
+
+                if (aVector != null)
+                {
+                    bool safe = false;
+
+                    // If found, check for anything behind the piece
+                    foreach (short pos in aVector)
+                    {
+                        if (allyTeam.Find(
+                            ally => ally.GetPosition() == pos) != null)
+                        {
+                            safe = true;
+                            break;
+                        }
+                    }
+
+                    if (!safe)
+                    {
+                        unsafeIndeces.Add(i);
+                    }
+                }
+            }
+        }
+
+        // Flip target indeces so we remove from the end first
+        unsafeIndeces.Reverse();
+
+        // Remove all unsafe vectors
+        foreach (int x in unsafeIndeces)
+            fMoves.RemoveAt(x);
 
         return null;
     }

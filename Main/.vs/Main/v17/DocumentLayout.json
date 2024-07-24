@@ -7,19 +7,11 @@
       "RelativeMoniker": "D:0:0:{ADD26053-BE66-4F77-AE7C-54DE13F69A29}|Main.csproj|solutionrelative:assets\\code\\models\\core\\game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{ADD26053-BE66-4F77-AE7C-54DE13F69A29}|Main.csproj|c:\\users\\wwwpe\\onedrive\\documents\\college\\txst\\summer 2024\\chess-scenario-simulator\\main\\assets\\code\\models\\puzzle\\puzzlegenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{ADD26053-BE66-4F77-AE7C-54DE13F69A29}|Main.csproj|C:\\Users\\wwwpe\\OneDrive\\Documents\\College\\TXST\\Summer 2024\\Chess-Scenario-Simulator\\Main\\assets\\code\\models\\puzzle\\puzzlegenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ADD26053-BE66-4F77-AE7C-54DE13F69A29}|Main.csproj|solutionrelative:assets\\code\\models\\puzzle\\puzzlegenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{ADD26053-BE66-4F77-AE7C-54DE13F69A29}|Main.csproj|c:\\users\\wwwpe\\onedrive\\documents\\college\\txst\\summer 2024\\chess-scenario-simulator\\main\\assets\\code\\models\\core\\king.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ADD26053-BE66-4F77-AE7C-54DE13F69A29}|Main.csproj|solutionrelative:assets\\code\\models\\core\\king.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ADD26053-BE66-4F77-AE7C-54DE13F69A29}|Main.csproj|c:\\users\\wwwpe\\onedrive\\documents\\college\\txst\\summer 2024\\chess-scenario-simulator\\main\\assets\\code\\controllers\\boardmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ADD26053-BE66-4F77-AE7C-54DE13F69A29}|Main.csproj|solutionrelative:assets\\code\\controllers\\boardmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ADD26053-BE66-4F77-AE7C-54DE13F69A29}|Main.csproj|c:\\users\\wwwpe\\onedrive\\documents\\college\\txst\\summer 2024\\chess-scenario-simulator\\main\\assets\\code\\models\\core\\piece.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{ADD26053-BE66-4F77-AE7C-54DE13F69A29}|Main.csproj|C:\\Users\\wwwpe\\OneDrive\\Documents\\College\\TXST\\Summer 2024\\Chess-Scenario-Simulator\\Main\\assets\\code\\models\\core\\piece.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ADD26053-BE66-4F77-AE7C-54DE13F69A29}|Main.csproj|solutionrelative:assets\\code\\models\\core\\piece.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -30,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 130,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
@@ -40,7 +32,7 @@
               "RelativeDocumentMoniker": "Assets\\Code\\Models\\Puzzle\\PuzzleGenerator.cs",
               "ToolTip": "C:\\Users\\wwwpe\\OneDrive\\Documents\\College\\TXST\\Summer 2024\\Chess-Scenario-Simulator\\Main\\Assets\\Code\\Models\\Puzzle\\PuzzleGenerator.cs",
               "RelativeToolTip": "Assets\\Code\\Models\\Puzzle\\PuzzleGenerator.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAhwPoAAAAlAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAPoAAAAlAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-24T04:57:43.712Z",
               "EditorCaption": ""
@@ -48,38 +40,12 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "King.cs",
-              "DocumentMoniker": "C:\\Users\\wwwpe\\OneDrive\\Documents\\College\\TXST\\Summer 2024\\Chess-Scenario-Simulator\\Main\\Assets\\Code\\Models\\Core\\King.cs",
-              "RelativeDocumentMoniker": "Assets\\Code\\Models\\Core\\King.cs",
-              "ToolTip": "C:\\Users\\wwwpe\\OneDrive\\Documents\\College\\TXST\\Summer 2024\\Chess-Scenario-Simulator\\Main\\Assets\\Code\\Models\\Core\\King.cs",
-              "RelativeToolTip": "Assets\\Code\\Models\\Core\\King.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-24T04:29:17.406Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "BoardManager.cs",
-              "DocumentMoniker": "C:\\Users\\wwwpe\\OneDrive\\Documents\\College\\TXST\\Summer 2024\\Chess-Scenario-Simulator\\Main\\Assets\\Code\\Controllers\\BoardManager.cs",
-              "RelativeDocumentMoniker": "Assets\\Code\\Controllers\\BoardManager.cs",
-              "ToolTip": "C:\\Users\\wwwpe\\OneDrive\\Documents\\College\\TXST\\Summer 2024\\Chess-Scenario-Simulator\\Main\\Assets\\Code\\Controllers\\BoardManager.cs",
-              "RelativeToolTip": "Assets\\Code\\Controllers\\BoardManager.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-24T04:05:01.575Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
               "Title": "Piece.cs",
               "DocumentMoniker": "C:\\Users\\wwwpe\\OneDrive\\Documents\\College\\TXST\\Summer 2024\\Chess-Scenario-Simulator\\Main\\Assets\\Code\\Models\\Core\\Piece.cs",
               "RelativeDocumentMoniker": "Assets\\Code\\Models\\Core\\Piece.cs",
               "ToolTip": "C:\\Users\\wwwpe\\OneDrive\\Documents\\College\\TXST\\Summer 2024\\Chess-Scenario-Simulator\\Main\\Assets\\Code\\Models\\Core\\Piece.cs",
               "RelativeToolTip": "Assets\\Code\\Models\\Core\\Piece.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAFAAAA",
+              "ViewState": "AQIAAC0AAAAAAAAAAAAAAD4AAAAlAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-24T02:33:37.39Z",
               "EditorCaption": ""
@@ -92,7 +58,7 @@
               "RelativeDocumentMoniker": "Assets\\Code\\Models\\Core\\Game.cs",
               "ToolTip": "C:\\Users\\wwwpe\\OneDrive\\Documents\\College\\TXST\\Summer 2024\\Chess-Scenario-Simulator\\Main\\Assets\\Code\\Models\\Core\\Game.cs",
               "RelativeToolTip": "Assets\\Code\\Models\\Core\\Game.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAARAAAA",
+              "ViewState": "AQIAANkAAAAAAAAAAAAkwOkAAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-24T02:08:39.42Z",
               "EditorCaption": ""

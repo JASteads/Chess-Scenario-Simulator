@@ -7,7 +7,7 @@ public class Bishop:Piece
         SetKind(3);
     }
 
-    public override List<short> CheckMoves()
+    public override List<List<short>> CheckMoves()
     {
         return null;
     }

@@ -7,7 +7,7 @@ public class Knight:Piece
         SetKind(2);
     }
 
-    public override List<short> CheckMoves()
+    public override List<List<short>> CheckMoves()
     {
         return null;
     }

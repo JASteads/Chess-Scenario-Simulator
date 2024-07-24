@@ -7,7 +7,7 @@ public class Queen:Piece
         SetKind(4);
     }
 
-    public override List<short> CheckMoves()
+    public override List<List<short>> CheckMoves()
     {
         return null;
     }
