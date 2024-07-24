@@ -53,6 +53,14 @@
     <Compile Include="Assets\Code\Controllers\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Assets\Code\Models\Core\Bishop.cs" />
+    <Compile Include="Assets\Code\Models\Core\Game.cs" />
+    <Compile Include="Assets\Code\Models\Core\King.cs" />
+    <Compile Include="Assets\Code\Models\Core\Knight.cs" />
+    <Compile Include="Assets\Code\Models\Core\Pawn.cs" />
+    <Compile Include="Assets\Code\Models\Core\Piece.cs" />
+    <Compile Include="Assets\Code\Models\Core\Queen.cs" />
+    <Compile Include="Assets\Code\Models\Core\Rook.cs" />
     <Compile Include="Assets\Code\Models\Puzzle\PuzzleGenerator.cs" />
     <Compile Include="Assets\Code\Models\Puzzle\Scenario.cs" />
     <Compile Include="Assets\Code\Models\SystemManager.cs" />
@@ -75,6 +83,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -124,8 +133,6 @@
   <ItemGroup>
     <None Include="Assets\Graphics\Rook_W.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Assets\Code\Models\Core\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
