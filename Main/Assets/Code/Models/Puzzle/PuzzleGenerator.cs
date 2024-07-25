@@ -316,7 +316,7 @@ public class PuzzleGenerator
             int fromPosition = move & 63;
             int toPosition = (move >> 6) & 63;
 
-            foreach (var noisePiece in noisePieces)
+            foreach (Piece noisePiece in noisePieces)
             {
                 if (IsMoveObstructed(fromPosition, toPosition, noisePiece.GetPosition()))
                 {

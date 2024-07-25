@@ -46,7 +46,7 @@ class Program
             Console.WriteLine("Starting Pieces:");
             foreach (var piece in selectedScenario.StartingPieces)
             {
-                Console.WriteLine($"  {piece.GetType().Name} at position {piece.GetPosition(piece)}, color: {piece.GetTeam(piece)}");
+                Console.WriteLine($"  {piece.GetType().Name} at position {piece.GetPosition()}, color: {piece.GetTeam()}");
             }
             Console.WriteLine($"Number of Correct Moves: {selectedScenario.CorrectMoves.Count}");
             Console.WriteLine($"Number of Counter Moves: {selectedScenario.CounterMoves.Count}");
