@@ -9,18 +9,17 @@ public class Game
     public List<List<short>> activeMoveList;
 
     King wKing, bKing;
-    List<List<short>> wKingAttacks, bKingAttacks,
-        dangerVecs;
+    List<List<short>> wKingAttacks, bKingAttacks;
+    List<short> threatVec;
 
     public Game()
     {
-        whitePieces = new List<Piece>();
-        blackPieces = new List<Piece>();
-        wKingAttacks = new List<List<short>>();
-        bKingAttacks = new List<List<short>>();
-        dangerVecs = new List<List<short>>();
-
-        activeMoveList = new List<List<short>>();
+        whitePieces = [];
+        blackPieces = [];
+        wKingAttacks = [];
+        bKingAttacks = [];
+        threatVec = [];
+        activeMoveList = [];
     }
 
     public void SetBoard()
@@ -120,14 +119,11 @@ public class Game
     {
         selectedPiece.SetPosition(loc);
 
-        Piece defender = whiteTurn ? 
+        Piece? defender = whiteTurn ?
             blackPieces.Find(p => p.GetPosition() == loc) :
             whitePieces.Find(p => p.GetPosition() == loc);
 
-        if (defender != null)
-        {
-            OnCapture(defender);
-        }
+        if (defender != null) OnCapture(defender);
 
         // Pawn logic
         if (selectedPiece.GetKind() == 0)
@@ -148,7 +144,10 @@ public class Game
 
     void OnCapture(Piece p)
     {
-        
+        if (whiteTurn)
+            blackPieces.Remove(p);
+        else
+            whitePieces.Remove(p);
     }
 
     void OnMoveEnd()
@@ -156,44 +155,61 @@ public class Game
         // Update the attack vectors of the current team
         UpdateKingAttack();
 
-        List<List<short>> oppMoves = new List<List<short>>();
-        King k = whiteTurn ? bKing : wKing;
+        List<List<short>> oppMoves;
+        King k;
 
-        foreach(List<short> v in oppMoves)
+        if (whiteTurn)
+        {
+            oppMoves = bKingAttacks;
+            k = bKing;
+        }
+        else
+        {
+            oppMoves = wKingAttacks;
+            k = wKing;
+        }
+
+        foreach (List<short> v in oppMoves)
         {
             if (!v.Exists(
-                p => p != k.GetPosition() && 
+                p => p != k.GetPosition() &&
                 whitePieces.Exists(w => w.GetPosition() == p) &&
                 blackPieces.Exists(b => b.GetPosition() == p)))
             {
                 k.IsChecked = true;
-                UpdateDangerVecs(v);
+                threatVec = v;
+                
                 break;
             }
         }
 
         // Clear the danger vectors if the king is not in danger
-        if (!k.IsChecked) dangerVecs.Clear();
+        if (!k.IsChecked) threatVec.Clear();
 
         // See if a king is in trouble
         CheckForKing(k);
 
-        // Change turns
-        whiteTurn = !whiteTurn;
+        if (IsActive)
+        {
+            // Change turns
+            whiteTurn = !whiteTurn;
+        }
     }
 
     void CheckForKing(King k)
     {
-        if (FilterMoves(k).Count == 0)
+        if (FilterMoves(k).TrueForAll(v => v.Count == 0))
             if (CheckForEnd(whiteTurn ? blackPieces : whitePieces))
-                OnGameEnd(k.IsChecked ? true : false);
+                OnGameEnd(k.IsChecked);
     }
 
     bool CheckForEnd(List<Piece> team)
     {
         foreach (Piece p in team)
         {
-            if (FilterMoves(p).Count > 0)
+            List<List<short>> fMoves = FilterMoves(p);
+
+            if (fMoves.Count > 0 && fMoves.TrueForAll(v => v.Count > 0))
                 return false;
         }
 
@@ -224,20 +240,6 @@ public class Game
             wKingAttacks = FindAttackVectors(wKing, blackPieces);
     }
 
-    void UpdateDangerVecs(List<short> threat)
-    {
-        List<Piece> attackingTeam = whiteTurn ? whitePieces : blackPieces;
-
-        dangerVecs.Add(threat);
-        foreach (Piece p in attackingTeam)
-        {
-            foreach (List<short> v in FilterMoves(p))
-            {
-
-            }
-        }
-    }
-
     // Returns all tiles that create a line of sight on the given king
     List<List<short>> FindAttackVectors(King k, List<Piece> team)
     {
@@ -256,7 +258,17 @@ public class Game
             for (int i = 0; i < attackVectors.Count; i++)
             {
                 if (!attackVectors[i].Contains(kPos))
+                {
                     indeces.Add(i);
+                }
+                else
+                {
+                    // Remove the king's position from the vector
+                    attackVectors[i].RemoveAt(attackVectors[i].Count - 1);
+
+                    // Include the piece's location in the atk vector
+                    attackVectors[i].Insert(0, (short)p.GetPosition());
+                }
             }
             indeces.Reverse();
 
@@ -288,6 +300,18 @@ public class Game
             oppTeam = whitePieces;
             oppAttacks = bKingAttacks;
         }
+
+        // THREAT FILTER -- Remove moves that don't intersect a threat
+        
+        if (selectedPiece.GetKind() != (int)Piece.Kind.King &&
+            threatVec.Count > 0)
+            fMoves.RemoveAll(v =>
+            {
+                return !v.Exists(pos =>
+                {
+                    return threatVec.Contains(pos);
+                });
+            });
 
 
         // GENERAL FILTER -- Remove illegal moves from all vectors
@@ -359,7 +383,6 @@ public class Game
         // KING FILTER -- Further restrict a king's movement
 
         if (p.GetKind() == (int)Piece.Kind.King)
-        {
             // If king, check all moves
             foreach (List<short> m in fMoves)
             {
@@ -378,8 +401,13 @@ public class Game
                         /* If the vector intersects the king's path,
                          * filter the king's move out
                          */
-                        if (m.Exists(
-                            pos => { return v.Exists(pos => m.Contains(pos)); }))
+                        if (m.Exists(pos => 
+                        {
+                            return v.Exists(pos =>
+                            {
+                                return m.Contains(pos);
+                            });
+                        }))
                         {
                             m.Clear();
                             break;
@@ -389,12 +417,74 @@ public class Game
                     /* Don't check for more intersections if the
                      * move has already been filtered out
                      */
-                    if (m.Count > 0) break;
+                    if (m.Count == 0) break;
+
+                    /* Check if this piece is reinforced to prevent 
+                     * the king from attacking it
+                     */
+                    if (m.Contains((short)e.GetPosition()) &&
+                        IsReinforced(e, oppTeam))
+                    {
+                        m.Clear();
+                    }
+
+                    if (m.Count == 0) break;
                 }
+            }
+
+        return fMoves;
+    }
+
+    bool IsReinforced(Piece p, List<Piece> team)
+    {
+        bool success = false;
+
+        foreach (Piece e in team)
+        {
+            List<List<short>> eMoves = e.CheckMoves();
+            List<short>? referenceVec = null;
+            Piece? defender = null;
+            int referenceIndex = -1;
+
+            foreach (List<short> v in eMoves)
+            {
+                int i = v.FindIndex(pos => pos == p.GetPosition());
+
+                // If p is found in the full movelist, remove
+                // every move up to p (keep p's position)
+                if (i != -1)
+                {
+                    v.RemoveRange(i + 1, v.Count - (i + 1));
+
+                    referenceVec = v;
+                    defender = e;
+                    referenceIndex = eMoves.IndexOf(v);
+                    break;
+                }
+            }
+
+            if (defender != null && referenceVec != null)
+            {
+                List<List<short>> fMoves = FilterMoves(defender);
+                List<short>? matchingVector = fMoves.Find(v =>
+                {
+                    return v.Count > 0 && v.Exists(pos =>
+                    {
+                        return referenceVec.Contains(pos);
+                    });
+                });
+
+                if (matchingVector != null)
+                {
+                    matchingVector.Add((short)p.GetPosition());
+                    success = matchingVector.SequenceEqual(referenceVec);
+                }
+
+                if (success) break;
             }
         }
 
-        return fMoves;
+        return success;
     }
 
     List<int> FindUnsafeIndeces(List<List<short>> vectors,

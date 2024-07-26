@@ -14,10 +14,16 @@
 
         while (g.IsActive)
         {
-            ShowBoard();
+            PlayTurn();
         }
 
         DetermineOutcome();
+    }
+
+    static void PlayTurn()
+    {
+        ShowBoard();
+        PromptSelection();
     }
 
     static void ShowBoard()
@@ -74,8 +80,6 @@
             Console.WriteLine();
         }
         Console.WriteLine();
-
-        PromptSelection();
     }
 
     static int[] GetRowAndCol(int pos)
@@ -132,6 +136,7 @@
 
     static void DetermineOutcome()
     {
+        ShowBoard();
         if (g.isCheckmate)
         {
             string winner = g.whiteTurn ? "White" : "Black";
@@ -156,12 +161,13 @@
     static bool GetLocationFromStr(string str, ref int pos)
     {
         bool success = false;
+        char letter = str.Substring(0, 1).ToUpper()[0];
 
-        if (str != null && str.Length >= 2 && 
-            str[0] >= 'A' && str[0] < 'I' &&
+        if (str != null && str.Length >= 2 &&
+            letter >= 'A' && letter < 'I' &&
             str[1] > '0' && str[1] < '9')
         {
-            pos = ((str[1] - '0' - 1) * 8) + (str[0] - 'A');
+            pos = ((str[1] - '0' - 1) * 8) + (letter - 'A');
             success = true;
         }
 
