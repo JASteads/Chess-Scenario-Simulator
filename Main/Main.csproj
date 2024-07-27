@@ -8,10 +8,11 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>Main</RootNamespace>
     <AssemblyName>Main</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -46,14 +47,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Assets\Code\Controllers\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="Assets\Code\Controllers\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Assets\Code\Models\Core\Bishop.cs" />
+    <Compile Include="Assets\Code\Models\Core\Game.cs" />
+    <Compile Include="Assets\Code\Models\Core\King.cs" />
+    <Compile Include="Assets\Code\Models\Core\Knight.cs" />
+    <Compile Include="Assets\Code\Models\Core\Pawn.cs" />
+    <Compile Include="Assets\Code\Models\Core\Piece.cs" />
+    <Compile Include="Assets\Code\Models\Core\Queen.cs" />
+    <Compile Include="Assets\Code\Models\Core\Rook.cs" />
+    <Compile Include="Assets\Code\Models\Puzzle\PuzzleGenerator.cs" />
+    <Compile Include="Assets\Code\Models\Puzzle\Scenario.cs" />
+    <Compile Include="Assets\Code\Models\SystemManager.cs" />
+    <Compile Include="Assets\Code\Views\BoardUI.cs" />
+    <Compile Include="Assets\Code\Views\MainMenuUI.cs" />
+    <Compile Include="Assets\Code\Views\PuzzleUI.cs" />
+    <Compile Include="Assets\Code\Views\UserInterface.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Assets\Code\Controllers\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -62,7 +81,9 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -76,5 +97,42 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Graphics\Bishop_B.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Graphics\Bishop_W.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Graphics\King_B.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Graphics\King_W.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Graphics\Knight_B.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Graphics\Knight_W.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Graphics\Pawn_B.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Graphics\Pawn_W.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Graphics\Queen_B.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Graphics\Queen_W.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Graphics\Rook_B.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Graphics\Rook_W.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
