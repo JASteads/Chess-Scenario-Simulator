@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\wwwpe\\OneDrive\\Documents\\College\\TXST\\Summer 2024\\Chess-Scenario-Simulator\\Main\\Testing Environment\\ConsoleApp1\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{443C5D7B-7349-4D02-92B0-59C028E030F1}|ConsoleApp1.csproj|c:\\users\\wwwpe\\onedrive\\documents\\college\\txst\\summer 2024\\chess-scenario-simulator\\main\\testing environment\\consoleapp1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{443C5D7B-7349-4D02-92B0-59C028E030F1}|ConsoleApp1.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{443C5D7B-7349-4D02-92B0-59C028E030F1}|ConsoleApp1.csproj|c:\\users\\wwwpe\\onedrive\\documents\\college\\txst\\summer 2024\\chess-scenario-simulator\\main\\testing environment\\consoleapp1\\core\\knight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{443C5D7B-7349-4D02-92B0-59C028E030F1}|ConsoleApp1.csproj|solutionrelative:core\\knight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{443C5D7B-7349-4D02-92B0-59C028E030F1}|ConsoleApp1.csproj|c:\\users\\wwwpe\\onedrive\\documents\\college\\txst\\summer 2024\\chess-scenario-simulator\\main\\testing environment\\consoleapp1\\core\\game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{443C5D7B-7349-4D02-92B0-59C028E030F1}|ConsoleApp1.csproj|solutionrelative:core\\game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{443C5D7B-7349-4D02-92B0-59C028E030F1}|ConsoleApp1.csproj|c:\\users\\wwwpe\\onedrive\\documents\\college\\txst\\summer 2024\\chess-scenario-simulator\\main\\testing environment\\consoleapp1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{443C5D7B-7349-4D02-92B0-59C028E030F1}|ConsoleApp1.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,8 +22,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Knight.cs",
+              "DocumentMoniker": "C:\\Users\\wwwpe\\OneDrive\\Documents\\College\\TXST\\Summer 2024\\Chess-Scenario-Simulator\\Main\\Testing Environment\\ConsoleApp1\\Core\\Knight.cs",
+              "RelativeDocumentMoniker": "Core\\Knight.cs",
+              "ToolTip": "C:\\Users\\wwwpe\\OneDrive\\Documents\\College\\TXST\\Summer 2024\\Chess-Scenario-Simulator\\Main\\Testing Environment\\ConsoleApp1\\Core\\Knight.cs",
+              "RelativeToolTip": "Core\\Knight.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAACsAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-27T23:23:26.222Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
@@ -28,14 +45,14 @@
               "RelativeDocumentMoniker": "Core\\Game.cs",
               "ToolTip": "C:\\Users\\wwwpe\\OneDrive\\Documents\\College\\TXST\\Summer 2024\\Chess-Scenario-Simulator\\Main\\Testing Environment\\ConsoleApp1\\Core\\Game.cs",
               "RelativeToolTip": "Core\\Game.cs",
-              "ViewState": "AQIAAI0BAAAAAAAAAAAhwKMBAAAsAAAA",
+              "ViewState": "AQIAAN4BAAAAAAAAAADgv+8BAAA9AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-24T23:36:14.958Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\wwwpe\\OneDrive\\Documents\\College\\TXST\\Summer 2024\\Chess-Scenario-Simulator\\Main\\Testing Environment\\ConsoleApp1\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",

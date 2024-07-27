@@ -354,29 +354,14 @@ public class Game
 
         // ATTACK VECTORS FILTER -- Prevent exposure of the king
 
-        List<int>? unsafeIndeces = null;
-
-        /* If there are any attacks on the allied king, find the
-         * movements this piece could make that must be restricted
-         */
+        // If there are any attacks on the allied king, find the
+        // movements this piece could make that must be restricted
         if (oppAttacks.Count > 0)
         {
             bool isTrapped = oppAttacks.Exists(v => v.Exists(
                 pos => pos == selectedPiece.GetPosition()));
 
-            unsafeIndeces = FindUnsafeIndeces(
-                fMoves, oppAttacks, isTrapped);
-        }
-
-        // If there are any unsafe vectors, remove them
-        if (unsafeIndeces != null)
-        {
-            // Flip target indeces so we remove from the end first
-            unsafeIndeces.Reverse();
-
-            // Remove all unsafe vectors
-            foreach (int x in unsafeIndeces)
-                fMoves.RemoveAt(x);
+            RemoveUnsafeVecs(fMoves, oppAttacks, isTrapped);
         }
 
 
@@ -394,6 +379,10 @@ public class Game
                  */
                 foreach (Piece e in oppTeam)
                 {
+                    // Exclude the king to prevent a stack overflow
+                    if (e.GetKind() == (int)Piece.Kind.King)
+                        continue;
+
                     List<List<short>> eVecs = FilterMoves(e);
 
                     foreach (List<short> v in eVecs)
@@ -487,16 +476,33 @@ public class Game
         return success;
     }
 
-    List<int> FindUnsafeIndeces(List<List<short>> vectors,
+    void RemoveUnsafeVecs(List<List<short>> vectors,
         List<List<short>> attacks, bool isTrapped)
     {
         List<int> unsafeIndeces = new List<int>();
 
-        if (!isTrapped)
-        {
-            return unsafeIndeces;
-        }
+        if (!isTrapped) return;
 
+        vectors.RemoveAll(v =>
+        {
+            for (int i = 0; i < v.Count; i++)
+            {
+                // Find any attack vectors that intersect this line
+                List<List<short>> aVectors = attacks.FindAll(av =>
+                { return !av.Contains(v[i]); });
+
+                // If there are any attack vectors, begin filtering
+                if (aVectors.Count > 0)
+                    // If any attack vector exposes the king,
+                    // this vector is unsafe
+                    foreach (List<short> av in aVectors)
+                        if (!IsKingSafe(av)) return true;
+            }
+
+            return false;
+        });
+
+        /*
         for (int i = 0; i < vectors.Count; i++)
         {
             List<short> v = vectors[i];
@@ -511,6 +517,7 @@ public class Game
                 // If there are any attack vectors, begin filtering
                 if (aVectors.Count > 0)
                 {
+                    
                     // For each vector that exposes king, add to list
                     foreach (List<short> av in aVectors)
                         if (!IsKingSafe(av))
@@ -520,6 +527,7 @@ public class Game
         }
 
         return unsafeIndeces;
+        */
     }
 
     bool IsKingSafe(List<short> av)
