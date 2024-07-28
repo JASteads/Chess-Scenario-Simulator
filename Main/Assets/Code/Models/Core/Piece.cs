@@ -1,38 +1,37 @@
-using System;
-using System.Data.Common;
-using System.Threading;
+using System.Collections.Generic;
 
 public abstract class Piece
 {
+    protected short information;
 
-    protected short information = 0;
-    public Piece(ushort location, ushort team)
+    public Piece(short location, short team)
     {
+        information = 0; // Set a default value to be specified by setters
         SetPosition(location);
         SetTeam(team);
     }
 
+    public int GetPosition()
+    {
+        return information & 63;
+    }
+    public int GetKind()
+    {
+        return (information >> 6) & 7;
+    }
+    public int GetTeam()
+    {
+        return (information >> 9) & 1;
+    }
 
-    public int GetPosition(Piece p)
-    {
-        return p.information & 63;
-    }
-    public int GetType(Piece p)
-    {
-        return (p.information >> 6) & 7;
-    }
-    public int GetTeam(Piece p)
-    {
-        return (p.information >> 9) & 1;
-    }
-    public void SetPosition(ushort newPos)
+    public void SetPosition(int newPos)
     {
         if (newPos >= 0 && newPos <= 63)
         {
-            information = (short)((information & ~63) | newPos);
+            information = (short)((information & ~63) | (ushort)newPos);
         }
     }
-    public void SetType(int newType)
+    public void SetKind(int newType)
     {
         if (newType >= 0 && newType <= 5)
         {
@@ -41,27 +40,27 @@ public abstract class Piece
     }
     public void SetTeam(int newTeam)
     {   
-        if(newTeam >= 0 && newTeam <= 1)
+        if (newTeam >= 0 && newTeam <= 1)
         {
             information = (short)((information & ~(1 << 9)) | ((short)newTeam << 9));
         }
     }
-    /*public char[] Piece:NotateLocation()
+
+    public string NotateLocation()
     {
-        char[] result = new char[2];    
-        int pos = GetPosition() + 1; // returns 3
-
-        int letterNum = (pos / 8) + 1; // 1
-        int valueNum = pos % 8;  // 3
+        char[] result = new char[2];
         
-        result[0] = (char)((int)'A' + letterNum);   
-        result[1] = (char)((int)'1' + valueNum);
+        int pos = GetPosition() + 1,
+            letterNum = (pos / 8) + 1,
+            valueNum = (pos % 8) + 1;
+        
+        result[0] = (char)('A' + letterNum);   
+        result[1] = (char)('1' + valueNum);
 
-        return result;
+        return result.ToString();
     }
-    */
-
-     public abstract bool CheckMoves();
+    
+    public abstract List<List<short>> CheckMoves();
   
     public void Move()
     {

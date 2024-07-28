@@ -1,15 +1,18 @@
+using System.Collections.Generic;
+
 public class Rook:Piece
 {
-    public Rook(ushort location, ushort team) : base(location, team)
-    {
-        SetType(1);
-    }
-    public override bool CheckMoves()
-    {
-        return true;
-    }
     public bool HasMoved;
-    public bool IsLeft;
+
+    public Rook(short location, short team) : base(location, team)
+    {
+        SetKind(1);
+    }
+
+    public override List<List<short>> CheckMoves()
+    {
+        return null;
+    }
 
     public void TryCastle() { }
 }

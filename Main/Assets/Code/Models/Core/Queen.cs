@@ -1,12 +1,15 @@
+using System.Collections.Generic;
+
 public class Queen:Piece
 {
-    public Bishop(ushort location, ushort team) : base(location, team)
+    public Queen(short location, short team) : base(location, team)
     {
-        SetType(4);
+        SetKind(4);
     }
-    public override bool CheckMoves()
+
+    public override List<List<short>> CheckMoves()
     {
-        return true;
+        return null;
     }
 
 }
