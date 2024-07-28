@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = PuzzleGenerator.nUnitTests
-build_property.ProjectDir = C:\Users\hamma\Documents\GitHub\Chess-Scenario-Simulator\Main\Assets\PuzzleGenerator.nUnitTests\
+build_property.ProjectDir = C:\Users\wwwpe\OneDrive\Documents\College\TXST\Summer 2024\Chess-Scenario-Simulator\Main\Assets\PuzzleGenerator.nUnitTests\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

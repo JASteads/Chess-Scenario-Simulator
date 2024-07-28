@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hamma\\Documents\\GitHub\\Chess-Scenario-Simulator\\Main\\Assets\\ConsoleApp\\ConsoleApp.csproj": {}
+    "C:\\Users\\wwwpe\\OneDrive\\Documents\\College\\TXST\\Summer 2024\\Chess-Scenario-Simulator\\Main\\Assets\\ConsoleApp\\ConsoleApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hamma\\Documents\\GitHub\\Chess-Scenario-Simulator\\Main\\Assets\\ConsoleApp\\ConsoleApp.csproj": {
+    "C:\\Users\\wwwpe\\OneDrive\\Documents\\College\\TXST\\Summer 2024\\Chess-Scenario-Simulator\\Main\\Assets\\ConsoleApp\\ConsoleApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hamma\\Documents\\GitHub\\Chess-Scenario-Simulator\\Main\\Assets\\ConsoleApp\\ConsoleApp.csproj",
+        "projectUniqueName": "C:\\Users\\wwwpe\\OneDrive\\Documents\\College\\TXST\\Summer 2024\\Chess-Scenario-Simulator\\Main\\Assets\\ConsoleApp\\ConsoleApp.csproj",
         "projectName": "ConsoleApp",
-        "projectPath": "C:\\Users\\hamma\\Documents\\GitHub\\Chess-Scenario-Simulator\\Main\\Assets\\ConsoleApp\\ConsoleApp.csproj",
-        "packagesPath": "C:\\Users\\hamma\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hamma\\Documents\\GitHub\\Chess-Scenario-Simulator\\Main\\Assets\\ConsoleApp\\obj\\",
+        "projectPath": "C:\\Users\\wwwpe\\OneDrive\\Documents\\College\\TXST\\Summer 2024\\Chess-Scenario-Simulator\\Main\\Assets\\ConsoleApp\\ConsoleApp.csproj",
+        "packagesPath": "C:\\Users\\wwwpe\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\wwwpe\\OneDrive\\Documents\\College\\TXST\\Summer 2024\\Chess-Scenario-Simulator\\Main\\Assets\\ConsoleApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\hamma\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\wwwpe\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

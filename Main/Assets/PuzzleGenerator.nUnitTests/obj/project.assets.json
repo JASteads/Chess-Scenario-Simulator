@@ -982,23 +982,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hamma\\.nuget\\packages\\": {},
+    "C:\\Users\\wwwpe\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hamma\\Documents\\GitHub\\Chess-Scenario-Simulator\\Main\\Assets\\PuzzleGenerator.nUnitTests\\PuzzleGenerator.nUnitTests.csproj",
+      "projectUniqueName": "C:\\Users\\wwwpe\\OneDrive\\Documents\\College\\TXST\\Summer 2024\\Chess-Scenario-Simulator\\Main\\Assets\\PuzzleGenerator.nUnitTests\\PuzzleGenerator.nUnitTests.csproj",
       "projectName": "PuzzleGenerator.nUnitTests",
-      "projectPath": "C:\\Users\\hamma\\Documents\\GitHub\\Chess-Scenario-Simulator\\Main\\Assets\\PuzzleGenerator.nUnitTests\\PuzzleGenerator.nUnitTests.csproj",
-      "packagesPath": "C:\\Users\\hamma\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hamma\\Documents\\GitHub\\Chess-Scenario-Simulator\\Main\\Assets\\PuzzleGenerator.nUnitTests\\obj\\",
+      "projectPath": "C:\\Users\\wwwpe\\OneDrive\\Documents\\College\\TXST\\Summer 2024\\Chess-Scenario-Simulator\\Main\\Assets\\PuzzleGenerator.nUnitTests\\PuzzleGenerator.nUnitTests.csproj",
+      "packagesPath": "C:\\Users\\wwwpe\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\wwwpe\\OneDrive\\Documents\\College\\TXST\\Summer 2024\\Chess-Scenario-Simulator\\Main\\Assets\\PuzzleGenerator.nUnitTests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\hamma\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\wwwpe\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -1007,6 +1007,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

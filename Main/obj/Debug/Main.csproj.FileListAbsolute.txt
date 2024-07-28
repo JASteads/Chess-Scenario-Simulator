@@ -12,7 +12,6 @@ C:\Users\wwwpe\OneDrive\Documents\College\TXST\Summer 2024\Chess-Scenario-Simula
 C:\Users\wwwpe\OneDrive\Documents\College\TXST\Summer 2024\Chess-Scenario-Simulator\Main\bin\Debug\Main.exe
 C:\Users\wwwpe\OneDrive\Documents\College\TXST\Summer 2024\Chess-Scenario-Simulator\Main\bin\Debug\Main.pdb
 C:\Users\wwwpe\OneDrive\Documents\College\TXST\Summer 2024\Chess-Scenario-Simulator\Main\obj\Debug\Main.csproj.AssemblyReference.cache
-C:\Users\wwwpe\OneDrive\Documents\College\TXST\Summer 2024\Chess-Scenario-Simulator\Main\obj\Debug\Main.csproj.SuggestedBindingRedirects.cache
 C:\Users\wwwpe\OneDrive\Documents\College\TXST\Summer 2024\Chess-Scenario-Simulator\Main\obj\Debug\Main.Form1.resources
 C:\Users\wwwpe\OneDrive\Documents\College\TXST\Summer 2024\Chess-Scenario-Simulator\Main\obj\Debug\Main.Properties.Resources.resources
 C:\Users\wwwpe\OneDrive\Documents\College\TXST\Summer 2024\Chess-Scenario-Simulator\Main\obj\Debug\Main.csproj.GenerateResource.cache
