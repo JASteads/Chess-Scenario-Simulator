@@ -7,10 +7,18 @@
         StartGame();
     }
 
+    // For debugging
+    static void Premove()
+    {
+
+    }
+
     static void StartGame()
     {
         g = new Game();
         g.SetBoard();
+
+        Premove();
 
         while (g.IsActive)
         {

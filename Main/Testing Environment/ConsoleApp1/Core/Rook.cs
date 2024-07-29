@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 public class Rook:Piece
 {
     public bool HasMoved;
@@ -34,13 +32,13 @@ public class Rook:Piece
         // Bottom line
         for (int i = 0; i < row; i++)
         {
-            lines[2].Add((short)(GetPosition() - (i + 1)));
+            lines[2].Add((short)(GetPosition() - ((i + 1) * 8)));
         }
 
         // Top line
         for (int i = 0; i < (7 - row); i++)
         {
-            lines[3].Add((short)(GetPosition() + (i + 1)));
+            lines[3].Add((short)(GetPosition() + ((i + 1) * 8)));
         }
 
         return lines;
