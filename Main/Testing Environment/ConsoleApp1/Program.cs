@@ -7,23 +7,10 @@
         StartGame();
     }
 
-    // For debugging
+    // For debugging : Call Select(int) for every move to make
     static void Premove()
     {
-        g.SelectTile(GetLocationFromStr("e2"));
-        g.SelectTile(GetLocationFromStr("e4"));
-
-        g.SelectTile(GetLocationFromStr("f7"));
-        g.SelectTile(GetLocationFromStr("f6"));
-
-        g.SelectTile(GetLocationFromStr("d2"));
-        g.SelectTile(GetLocationFromStr("d4"));
-
-        g.SelectTile(GetLocationFromStr("g7"));
-        g.SelectTile(GetLocationFromStr("g5"));
-
-        g.SelectTile(GetLocationFromStr("d1"));
-        g.SelectTile(GetLocationFromStr("h5"));
+        // Select(GetLocationFromStr("a1")); <-- EXAMPLE
     }
 
     static void StartGame()
