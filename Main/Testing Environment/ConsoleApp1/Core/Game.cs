@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
-
 public class Game
 {
     public List<Piece> whitePieces, blackPieces;
@@ -36,11 +33,10 @@ public class Game
         whitePieces.Add(new Knight(6, 0));
         whitePieces.Add(new Bishop(2, 0));
         whitePieces.Add(new Bishop(5, 0));
-        whitePieces.Add(new Queen(4, 0));
-        whitePieces.Add(new King(3, 0));
+        whitePieces.Add(new Queen(3, 0));
 
-        // Keep track of the white king for checks
-        wKing = (King)whitePieces[whitePieces.Count - 1];
+        wKing = new King(4, 0);
+        whitePieces.Add(wKing);
 
         for (short i = 8; i < 16; i++)
             whitePieces.Add(new Pawn(i, 0));
@@ -51,33 +47,30 @@ public class Game
         blackPieces.Add(new Knight(62, 1));
         blackPieces.Add(new Bishop(58, 1));
         blackPieces.Add(new Bishop(61, 1));
-        blackPieces.Add(new Queen(60, 1));
-        blackPieces.Add(new King(59, 1));
+        blackPieces.Add(new Queen(59, 1));
 
-        // Keep track of the black king for checks
-        bKing = (King)blackPieces[blackPieces.Count - 1];
+        bKing = new King(60, 1);
+        blackPieces.Add(bKing);
 
         for (short i = 48; i < 56; i++)
             blackPieces.Add(new Pawn(i, 1));
     }
-    public void SetBoard(List<Piece> pieces)
+    public void SetBoard(List<Piece> set)
     {
-        // Start game with white going first
+        // TODO: Use the scenario's first correct move 
+        // to determine starting turn
         whiteTurn = true;
-        IsActive = true;
 
         // Add pieces from the scenario
-        for (int i = 0; i < pieces.Count; i++)
-        {
-            if (pieces[i].GetTeam() == 0)
-            {
-                whitePieces.Add(pieces[i]);
-            }
-            else
-            {
-                blackPieces.Add(pieces[i]);
-            }
+        foreach(Piece p in set)
+        { 
+            List<Piece> team = p.GetTeam() == 0 ?
+                whitePieces : blackPieces;
+
+            team.Add(p);
         }
+
+        IsActive = true;
     }
 
     public void SelectTile(int locInt)
@@ -118,23 +111,29 @@ public class Game
 
     public void OnMove(short loc)
     {
-        int prevRow = selectedPiece.GetPosition() / 8,
-            prevCol = selectedPiece.GetPosition() % 8;
+        int prev = selectedPiece.GetPosition(),
+            prevRow = prev / 8,
+            prevCol = prev % 8;
         List<Piece> oppTeam = whiteTurn ? blackPieces : whitePieces;
 
         selectedPiece.SetPosition(loc);
 
-        Piece? defender = oppTeam.Find(p => p.GetPosition() == loc);
+        int pPos = selectedPiece.GetPosition();
+
+        Piece? defender = FindPiece(oppTeam, loc);
 
         // Pawn logic
         if (selectedPiece.GetKind() == (int)Piece.Kind.Pawn)
         {
-            int row = selectedPiece.GetPosition() / 8,
-                col = selectedPiece.GetPosition() % 8,
+            int row = pPos / 8,
+                col = pPos % 8,
                 promoRow = whiteTurn ? 7 : 0;
+            bool isNowVulnerable = whiteTurn ?
+                prevRow == row - 2 :
+                prevRow == row + 2;
 
             // The pawn becomes vulnerable if it's taken two steps
-            (selectedPiece as Pawn).isVulnerable = prevRow == row-2;
+            (selectedPiece as Pawn).isVulnerable = isNowVulnerable;
             
             // Try en passant if a defender hasn't been found yet
             if (defender == null && prevCol != col)
@@ -158,10 +157,9 @@ public class Game
 
     void OnCapture(Piece p)
     {
-        if (whiteTurn)
-            blackPieces.Remove(p);
-        else
-            whitePieces.Remove(p);
+        List<Piece> oppTeam = whiteTurn ? blackPieces : whitePieces;
+
+        oppTeam.Remove(p);
     }
 
     void OnMoveEnd()
@@ -198,7 +196,10 @@ public class Game
 
         // King is checked if there's an unblocked attack vector
         foreach (List<short> v in oppMoves)
-            if (!v.Exists(
+        {
+            List<short> danger = v.Slice(1, v.Count - 1);
+
+            if (!danger.Exists(
                 p => p != k.GetPosition() &&
                 (whitePieces.Exists(w => w.GetPosition() == p) ||
                  blackPieces.Exists(b => b.GetPosition() == p))))
@@ -207,6 +208,8 @@ public class Game
                 threatVec = v;
                 break;
             }
+        }
+            
 
         // Clear the danger vectors if the king is not in danger
         if (!k.IsChecked) threatVec.Clear();
@@ -238,13 +241,9 @@ public class Game
     }
 
     // Attempts to return a piece from pieces at the given location
-    Piece FindPiece(List<Piece> pieces, short loc)
+    Piece? FindPiece(List<Piece> team, short loc)
     {
-        for (int i = 0; i < pieces.Count; i++)
-            if (pieces[i].GetPosition() == loc)
-                return pieces[i];
-
-        return null;
+        return team.Find(p => p.GetPosition() == loc);
     }
 
     void UpdateKingAttack()
@@ -270,25 +269,15 @@ public class Game
             List<List<short>> attackVectors = p.CheckMoves();
 
             // Exclude all paths that don't include the enemy king
-            for (int i = 0; i < attackVectors.Count; i++)
+            attackVectors.RemoveAll(v => !v.Contains(kPos));
+
+            foreach (List<short> v in attackVectors)
             {
-                if (!attackVectors[i].Contains(kPos))
-                {
-                    indeces.Add(i);
-                }
-                else
-                {
-                    // Remove the king's position from the vector
-                    attackVectors[i].RemoveAt(attackVectors[i].Count - 1);
+                int kIndex = v.Find(p => p == kPos);
 
-                    // Include the piece's location in the atk vector
-                    attackVectors[i].Insert(0, (short)p.GetPosition());
-                }
+                for (int i = v.Count - 1; i > kPos; i--)
+                    v.RemoveAt(i);
             }
-            indeces.Reverse();
-
-            foreach (int i in indeces)
-                attackVectors.RemoveAt(i);
 
             result.AddRange(attackVectors);
         }
@@ -316,13 +305,6 @@ public class Game
             oppAttacks = bKingAttacks;
         }
 
-        // THREAT FILTER -- Remove moves that don't intersect a threat
-        
-        if (selectedPiece.GetKind() != (int)Piece.Kind.King &&
-            threatVec.Count > 0)
-            fMoves.RemoveAll(
-                v => !v.Exists(p => threatVec.Contains(p)));
-
 
         // INTERCEPTION FILTER -- Reduce vectors that are intercepted
 
@@ -332,23 +314,29 @@ public class Game
 
             // Check ally pieces. These have higher priority
             for (int i = 0; i < interception; i++)
-                if (allyTeam.Exists(a => a.GetPosition() == v[i]))
+                if (FindPiece(allyTeam, v[i]) != null)
                 {
-                    interception = i - 1;
+                    if (i == 0)
+                    {
+                        interception = 0;
+                        v.Clear();
+                    }
+                    else interception = i - 1;
                     break;
                 }
 
             // Check enemy pieces
             for (int i = 0; i < interception; i++)
-                if (oppTeam.Exists(op => op.GetPosition() == v[i]))
+                if (FindPiece(oppTeam, v[i]) != null)
                 {
                     interception = i;
                     break;
                 }
 
-            // Remove all moves up to the point of an interception
-            for (int i = v.Count - 1; i > interception; i--)
-                v.Remove(v[i]);
+            if (v.Count > 0)
+                // Remove all moves up to the point of an interception
+                for (int i = v.Count - 1; i > interception; i--)
+                    v.Remove(v[i]);
         });
 
 
@@ -368,7 +356,7 @@ public class Game
 
         // PAWN FILTER -- Further restrict a pawn's movement
 
-        if (p.GetKind() == (int)Piece.Kind.Pawn)
+        if (p is Pawn)
         {
             int pPos = p.GetPosition(),
                 offsetL = 7,
@@ -386,29 +374,43 @@ public class Game
                 onStartRow = p.GetPosition() / 8 == 6;
             }
 
-            Piece? left = oppTeam.Find(p =>
-                p.GetPosition() == pPos + offsetL ||
-                (p.GetKind() == (int)Piece.Kind.Pawn &&
-                 p.GetPosition() == pPos - 1 &&
-                 ((Pawn)p).isVulnerable));
-            Piece? middle = oppTeam.Find(p =>
-                p.GetPosition() == pPos + offsetM);
-            Piece? right = oppTeam.Find(p =>
-                p.GetPosition() == pPos + offsetR ||
-                (p.GetKind() == (int)Piece.Kind.Pawn &&
-                 p.GetPosition() == pPos + 1 &&
-                 ((Pawn)p).isVulnerable));
+            Piece? left = oppTeam.Find(o =>
+                o.GetPosition() == pPos + offsetL ||
+                (o is Pawn && o.GetPosition() == pPos - 1 &&
+                 (o as Pawn).isVulnerable));
+            Piece? middle = oppTeam.Find(o =>
+                o.GetPosition() == pPos + offsetM);
+            Piece? right = oppTeam.Find(o =>
+                o.GetPosition() == pPos + offsetR ||
+                (o is Pawn && o.GetPosition() == pPos + 1 &&
+                 (o as Pawn).isVulnerable));
 
-            if (right == null)  fMoves[0].Clear();
-            if (middle != null) fMoves[1].Clear();
-            if (left == null)   fMoves[2].Clear();
-            if (!onStartRow)    fMoves[3].Clear();
+            if (right == null) fMoves[0].Clear();
+            if (left == null)  fMoves[2].Clear();
+
+            // Filter adds these pawn moves so they won't be 
+            // considered attack vectors (pawn can't attack in front)
+            if (middle == null)
+            {
+                fMoves[1].Add((short)(p.GetPosition() + offsetM));
+
+                if (onStartRow)
+                {
+                    int doubleStep = pPos + (offsetM * 2);
+
+                    if (!oppTeam.Exists(
+                        o => o.GetPosition() == doubleStep))
+                    {
+                        fMoves[1].Add((short)doubleStep);
+                    }
+                }
+            }
         }
 
 
         // KING FILTER -- Further restrict a king's movement
 
-        if (p.GetKind() == (int)Piece.Kind.King)
+        if (p is King)
             foreach (List<short> m in fMoves)
             {
                 // If a move has already been removed, ignore it
@@ -419,16 +421,28 @@ public class Game
                 foreach (Piece e in oppTeam)
                 {
                     // Exclude the king to prevent a stack overflow
-                    if (e.GetKind() == (int)Piece.Kind.King)
-                        continue;
+                    if (e is King) continue;
 
-                    // Remove king's move if it's in another vector
-                    foreach (List<short> v in FilterMoves(e))
-                        if (v.Exists(p => m[0] == p))
-                        {
-                            m.Clear();
-                            break;
-                        }
+                    if (e is Pawn)
+                    {
+                        // Pawns can only attack diagonally
+                        List<List<short>> eMoves = FilterMoves(e);
+
+                        if (eMoves[0].Contains(m[0]) || 
+                            eMoves[2].Contains(m[0])) m.Clear();
+                    }
+                    else
+                    {
+                        // Remove king's move if in another vector
+                        foreach (List<short> v in FilterMoves(e))
+                            if (v.Exists(pos => m[0] == pos))
+                            { 
+                                m.Clear();
+                                break;
+                                }
+                    }
+
+                    if (m.Count == 0) break;
 
                     // Check if this piece is reinforced to prevent 
                     // the king from attacking it
@@ -440,6 +454,16 @@ public class Game
                     }
                 }
             }
+
+
+        // THREAT FILTER -- Remove moves that don't intersect a threat
+
+        if (selectedPiece is not King && threatVec.Count > 0)
+            fMoves.ForEach(v =>
+            {
+                if (!v.Exists(p => threatVec.Contains(p))) v.Clear();
+            });
+
 
         return fMoves;
     }
@@ -499,7 +523,7 @@ public class Game
     void RemoveUnsafeVecs(List<List<short>> vectors,
         List<List<short>> attacks)
     {
-        vectors.RemoveAll(v =>
+        vectors.ForEach(v =>
         {
             foreach (short p in v)
             {
@@ -509,41 +533,13 @@ public class Game
                 // If any attack vector exposes the king, v is unsafe
                 //if (aVectors.TrueForAll(v => IsKingSafe(v))) 
                 //    return true;
-
                 
                 foreach (List<short> av in aVectors)
-                    if (!IsKingSafe(av)) return true;
-            }
+                    if (!IsKingSafe(av)) v.Clear();
 
-            return false;
+                if (v.Count == 0) break;
+            }
         });
-
-        /*
-        for (int i = 0; i < vectors.Count; i++)
-        {
-            List<short> v = vectors[i];
-
-            // Check each tile in a line for an attack vector
-            for (int j = 0; j < v.Count; j++)
-            {
-                // Find any attack vectors that intersect this line
-                List<List<short>> aVectors = attacks.FindAll(av =>
-                { return !av.Contains(v[j]); });
-
-                // If there are any attack vectors, begin filtering
-                if (aVectors.Count > 0)
-                {
-                    
-                    // For each vector that exposes king, add to list
-                    foreach (List<short> av in aVectors)
-                        if (!IsKingSafe(av))
-                            unsafeIndeces.Add(i);
-                }
-            }
-        }
-
-        return unsafeIndeces;
-        */
     }
 
     bool IsKingSafe(List<short> av)
@@ -556,17 +552,5 @@ public class Game
             blackPieces.Exists(
                 p => p.GetKind() != (int)Piece.Kind.King &&
                 p != selectedPiece && p.GetPosition() == pos));
-
-        // King is safe if there's any piece inside the vector
-
-        foreach (short pos in av)
-            if (whitePieces.Exists(
-                    p => p.GetKind() != (int)Piece.Kind.King &&
-                    p != selectedPiece && p.GetPosition() == pos) ||
-                blackPieces.Exists(
-                    p => p.GetKind() != (int)Piece.Kind.King &&
-                    p != selectedPiece && p.GetPosition() == pos))
-                return true;
-        return false;
     }
 }

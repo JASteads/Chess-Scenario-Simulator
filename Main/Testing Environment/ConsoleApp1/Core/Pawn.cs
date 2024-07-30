@@ -23,19 +23,10 @@ public class Pawn:Piece
         if (next < 64 && row + (1 * direction) == (next / 8))
             lines[0].Add((short)next);
 
-        // Top-middle
-        next -= (1 * direction);
-        if (next < 64 && row + (1 * direction) == (next / 8))
-            lines[1].Add((short)next);
-
         // Top-left
-        next -= (1 * direction);
+        next -= (2 * direction);
         if (next < 64 && row + (1 * direction) == (next / 8))
             lines[2].Add((short)next);
-
-        // Double-step
-        next = pos + (16 * direction);
-        lines[3].Add((short)next);
 
         return lines;
     }
