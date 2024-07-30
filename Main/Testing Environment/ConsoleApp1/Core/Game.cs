@@ -73,6 +73,12 @@ public class Game
         IsActive = true;
     }
 
+    // Attempts to return a piece from pieces at the given location
+    static Piece? FindPiece(List<Piece> team, int loc)
+    {
+        return team.Find(p => p.GetPosition() == (short)loc);
+    }
+
     public void SelectTile(int locInt)
     {
         short loc = (short)locInt;
@@ -109,7 +115,7 @@ public class Game
             activeMoveList = FilterMoves(selectedPiece);
     }
 
-    public void OnMove(short loc)
+    void OnMove(short loc)
     {
         int prev = selectedPiece.GetPosition(),
             prevRow = prev / 8,
@@ -123,7 +129,7 @@ public class Game
         Piece? defender = FindPiece(oppTeam, loc);
 
         // Pawn logic
-        if (selectedPiece.GetKind() == (int)Piece.Kind.Pawn)
+        if (selectedPiece is Pawn)
         {
             int row = pPos / 8,
                 col = pPos % 8,
@@ -141,13 +147,23 @@ public class Game
                 int defenderPos = loc + (whiteTurn ? -8 : 8);
 
                 defender = oppTeam.Find(
-                    p => p.GetPosition() == defenderPos &&
-                    p.GetKind() == (int)Piece.Kind.Pawn);
-            }   
+                    p => p is Pawn && 
+                    p.GetPosition() == defenderPos);
+            }
 
-            // If on the other side of the board.
-            // Promote to queen as a default for now
-            if (row == promoRow) selectedPiece.SetKind(4);
+            // If on the other side of the board,
+            // promote to queen as a default for now
+            if (row == promoRow)
+            {
+                Queen promotedPawn = new Queen(
+                    (short)pPos, (short)selectedPiece.GetTeam());
+
+                List<Piece> team = whiteTurn ? whitePieces : blackPieces;
+
+                // Replace the pawn with the new queen
+                team.Remove(FindPiece(team, pPos));
+                team.Add(promotedPawn);
+            };
         }
 
         if (defender != null) OnCapture(defender);
@@ -185,9 +201,7 @@ public class Game
         }
 
         // Remove stale pawn vulnerability
-        List<Piece> pawns = opps.FindAll(
-            p => p.GetKind() == (int)Piece.Kind.Pawn);
-
+        List<Piece> pawns = opps.FindAll(p => p is Pawn);
         pawns.ForEach(p =>
         {
             if ((p as Pawn).isVulnerable)
@@ -238,12 +252,6 @@ public class Game
     {
         IsActive = false;
         this.isCheckmate = isCheckmate;
-    }
-
-    // Attempts to return a piece from pieces at the given location
-    Piece? FindPiece(List<Piece> team, short loc)
-    {
-        return team.Find(p => p.GetPosition() == loc);
     }
 
     void UpdateKingAttack()
