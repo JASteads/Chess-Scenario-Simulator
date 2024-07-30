@@ -10,7 +10,28 @@
     // For debugging : Call Select(int) for every move to make
     static void Premove()
     {
-        // Select(GetLocationFromStr("a1")); <-- EXAMPLE
+        // SelectTile(GetLocationFromStr("a1")); <-- EXAMPLE
+
+        g.SelectTile(GetLocationFromStr("e2"));
+        g.SelectTile(GetLocationFromStr("e3"));
+
+        g.SelectTile(GetLocationFromStr("e7"));
+        g.SelectTile(GetLocationFromStr("e6"));
+
+        g.SelectTile(GetLocationFromStr("f1"));
+        g.SelectTile(GetLocationFromStr("c4"));
+
+        g.SelectTile(GetLocationFromStr("f8"));
+        g.SelectTile(GetLocationFromStr("c5"));
+
+        g.SelectTile(GetLocationFromStr("g1"));
+        g.SelectTile(GetLocationFromStr("f3"));
+
+        g.SelectTile(GetLocationFromStr("g8"));
+        g.SelectTile(GetLocationFromStr("f6"));
+
+        g.SelectTile(GetLocationFromStr("h1"));
+        g.SelectTile(GetLocationFromStr("e1"));
     }
 
     static void StartGame()

@@ -4,6 +4,7 @@ public class Rook:Piece
 
     public Rook(short location, short team) : base(location, team)
     {
+        HasMoved = false;
         SetKind(1);
     }
 
