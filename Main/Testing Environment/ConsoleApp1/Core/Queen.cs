@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using static System.Net.Mime.MediaTypeNames;
-
 public class Queen:Piece
 {
     public Queen(short location, short team) : base(location, team)

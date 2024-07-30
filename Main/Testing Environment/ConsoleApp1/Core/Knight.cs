@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 public class Knight:Piece
 {
     public Knight(short location, short team) : base(location, team)
@@ -41,7 +39,7 @@ public class Knight:Piece
             lines[4].Add((short)next);
 
         // Lower-left
-        next = pos - 4;
+        next -= 4;
         if ((next >= 0 && (pos / 8) - 1 == (next / 8)))
             lines[5].Add((short)next);
 

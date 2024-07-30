@@ -7,10 +7,18 @@
         StartGame();
     }
 
+    // For debugging : Call Select(int) for every move to make
+    static void Premove()
+    {
+        // Select(GetLocationFromStr("a1")); <-- EXAMPLE
+    }
+
     static void StartGame()
     {
         g = new Game();
         g.SetBoard();
+
+        Premove();
 
         while (g.IsActive)
         {
@@ -92,23 +100,20 @@
         Console.WriteLine("Select a tile : Use chess notation");
 
         bool valid;
-        int pos = 0;
+        int pos;
 
         do
         {
             string? input = Console.ReadLine();
-            valid = GetLocationFromStr(input, ref pos);
+            pos = GetLocationFromStr(input);
+            valid = pos != -1;
 
             if (valid)
-            {
                 valid = pos < 65 && pos >= 0;
-            }
             
             if (!valid)
-            {
                 Console.WriteLine(
                     "Invalid input. Please use chess notation");
-            }
         } while (!valid);
 
         Select(pos);
@@ -158,20 +163,18 @@
         return result;
     }
 
-    static bool GetLocationFromStr(string str, ref int pos)
+    static int GetLocationFromStr(string str)
     {
-        bool success = false;
         char letter = str.Substring(0, 1).ToUpper()[0];
 
         if (str != null && str.Length >= 2 &&
             letter >= 'A' && letter < 'I' &&
             str[1] > '0' && str[1] < '9')
         {
-            pos = ((str[1] - '0' - 1) * 8) + (letter - 'A');
-            success = true;
+            return ((str[1] - '0' - 1) * 8) + (letter - 'A');
         }
 
-        return success;
+        return -1;
     }
 
     static char GetPieceName(Piece p)

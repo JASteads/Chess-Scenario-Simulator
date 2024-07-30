@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 public class Bishop:Piece
 {
     public Bishop(short location, short team) : base(location, team)
