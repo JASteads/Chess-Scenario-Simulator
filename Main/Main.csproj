@@ -47,23 +47,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Code\Controllers\BoardManager.cs" />
+    <Compile Include="Assets\Code\Controllers\BoardEventArgs.cs" />
     <Compile Include="Assets\Code\Controllers\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Assets\Code\Controllers\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Assets\Code\Controllers\GameEndEventArgs.cs" />
     <Compile Include="Assets\Code\Models\Core\Bishop.cs" />
     <Compile Include="Assets\Code\Models\Core\Game.cs" />
     <Compile Include="Assets\Code\Models\Core\King.cs" />
     <Compile Include="Assets\Code\Models\Core\Knight.cs" />
     <Compile Include="Assets\Code\Models\Core\Pawn.cs" />
     <Compile Include="Assets\Code\Models\Core\Piece.cs" />
+    <Compile Include="Assets\Code\Controllers\PieceEventArgs.cs" />
     <Compile Include="Assets\Code\Models\Core\Queen.cs" />
     <Compile Include="Assets\Code\Models\Core\Rook.cs" />
+    <Compile Include="Assets\Code\Models\Mode.cs" />
+    <Compile Include="Assets\Code\Models\PieceGraphic.cs" />
     <Compile Include="Assets\Code\Models\Puzzle\PuzzleGenerator.cs" />
     <Compile Include="Assets\Code\Models\Puzzle\Scenario.cs" />
+    <Compile Include="Assets\Code\Models\StandardMode.cs" />
     <Compile Include="Assets\Code\Models\SystemManager.cs" />
     <Compile Include="Assets\Code\Views\BoardUI.cs" />
     <Compile Include="Assets\Code\Views\MainMenuUI.cs" />

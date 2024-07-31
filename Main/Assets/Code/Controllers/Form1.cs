@@ -6,11 +6,12 @@ namespace Main
 {
     public partial class Form1 : Form
     {
-        readonly Stack<UserInterface> uiStack;
+        readonly List<UserInterface> uiList;
+        Mode activeGameMode;
 
         public Form1()
         {
-            uiStack = new Stack<UserInterface>();
+            uiList = new List<UserInterface>();
             InitializeComponent();
         }
 
@@ -24,9 +25,9 @@ namespace Main
          */
         void LoadInterface(UserInterface ui)
         {
-            uiStack.Push(ui);
+            uiList.Add(ui);
             SuspendLayout();
-            Controls.AddRange(uiStack.Peek().GetControls().ToArray());
+            Controls.AddRange(ui.GetControls().ToArray());
             ResumeLayout(false);
         }
 
@@ -35,9 +36,22 @@ namespace Main
          */
         void ClearScreen()
         {
-            uiStack.Clear();
             SuspendLayout();
+            uiList.Clear();
             Controls.Clear();
+            ResumeLayout(false);
+        }
+
+        void FindNewElements(object sender, EventArgs e)
+        {
+            SuspendLayout();
+            foreach (UserInterface ui in uiList)
+            {
+                ui.GetControls().ForEach(c =>
+                {
+                    if (!Controls.Contains(c)) Controls.Add(c);
+                });
+            }
             ResumeLayout(false);
         }
 
@@ -50,13 +64,15 @@ namespace Main
         void StartStandard()
         {
             ClearScreen();
-            LoadBoardUI();
+            activeGameMode = 
+                new StandardMode(HomeButton_Click, FindNewElements);
+            LoadBoard();
         }
 
         void StartPuzzleGenerator()
         {
             ClearScreen();
-            LoadBoardUI();
+            LoadBoard();
             LoadPuzzleUI();
         }
 
@@ -66,9 +82,10 @@ namespace Main
                 PuzzleButton_Click, QuitButton_Click));
         }
 
-        void LoadBoardUI()
+        void LoadBoard()
         {
-            LoadInterface(new BoardUI(HomeButton_Click));
+            LoadInterface(activeGameMode.GetBoardUI());
+            activeGameMode.StartGame();
         }
 
         void LoadPuzzleUI()

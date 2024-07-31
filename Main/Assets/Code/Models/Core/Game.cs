@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 public class Game
@@ -213,7 +214,11 @@ public class Game
     {
         List<Piece> oppTeam = whiteTurn ? blackPieces : whitePieces;
 
+        PieceEventArgs e = new PieceEventArgs();
+        e.Piece = p;
+
         oppTeam.Remove(p);
+        OnPieceCapture(e);
     }
 
     void OnMoveEnd()
@@ -278,6 +283,8 @@ public class Game
 
         // Change turns if game hasn't ended
         if (IsActive) whiteTurn = !whiteTurn;
+
+        OnPieceMove(null);
     }
 
     void CheckForKing(King k)
@@ -297,6 +304,12 @@ public class Game
     {
         IsActive = false;
         this.isCheckmate = isCheckmate;
+
+        GameEndEventArgs e = new GameEndEventArgs();
+
+        e.IsChecked = isCheckmate;
+        e.EndTurn = whiteTurn;
+        OnGameEnd(e);
     }
 
     void UpdateKingAttack()
@@ -725,4 +738,23 @@ public class Game
                 p => p.GetKind() != (int)Piece.Kind.King &&
                 p != selectedPiece && p.GetPosition() == pos));
     }
+
+    protected virtual void OnGameEnd(GameEndEventArgs e)
+    {
+        GameEnd?.Invoke(this, e);
+    }
+
+    protected virtual void OnPieceCapture(PieceEventArgs e)
+    {
+        PieceCapture?.Invoke(this, e);
+    }
+
+    protected virtual void OnPieceMove(EventArgs e)
+    {
+        PieceMove?.Invoke(this, e);
+    }
+
+    public event EventHandler<GameEndEventArgs> GameEnd;
+    public event EventHandler<PieceEventArgs> PieceCapture;
+    public event EventHandler PieceMove;
 }
