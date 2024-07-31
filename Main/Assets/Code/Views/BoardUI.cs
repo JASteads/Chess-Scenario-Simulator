@@ -1,33 +1,69 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 public class BoardUI : UserInterface
 {
-    readonly Color lightColor, darkColor;
     Label currentTurnLabel;
+    List<PieceGraphic> tiles;
 
-    public BoardUI(EventHandler hEvent) : base()
+
+    public BoardUI(
+        EventHandler hEvent) : base()
     {
         currentTurnLabel = new Label();
-
-        lightColor = Color.White;
-        darkColor = Color.Gray;
+        tiles = new List<PieceGraphic>();
 
         Init(hEvent);
     }
 
-    void SelectTile(int pos)
+    public void SetTiles(List<Piece> wTeam, List<Piece> bTeam,
+        List<List<short>> moves)
     {
-        Console.WriteLine(pos + 1);
-        ChangeTurn();
+        for (int i = 0; i < tiles.Count; i++)
+        {
+            Piece p = wTeam.Find(w => w.GetPosition() == i);
+
+            if (p == null) p = bTeam.Find(w => w.GetPosition() == i);
+
+            if (tiles[i].piece != p)
+            {
+                tiles[i].piece = p;
+                tiles[i].SetButtonImage(p);
+            }
+
+            tiles[i].SetTileColor(moves.Exists(
+                v => v.Contains((short)i)) ?
+                PieceGraphic.SELECTED : i);
+        }
     }
 
-    void ChangeTurn()
+    void SelectTile(int pos)
+    {
+        // Send message containing 'pos' to all listeners
+        BoardEventArgs args = new BoardEventArgs();
+        args.Position = pos;
+        OnSelection(args);
+    }
+
+    public void ChangeTurn()
     {
         string turn = currentTurnLabel.Text.Substring(0, 5);
         currentTurnLabel.Text = turn == "Black" ?
             "White turn" : "Black turn";
+    }
+
+    public void EndStandardGame(bool whiteTurn, bool isCheckmate)
+    {
+        if (isCheckmate)
+        {
+            string winner = whiteTurn ? "White" : "Black";
+
+            Console.WriteLine($"Checkmate!! {winner} team wins.");
+        }
+        else
+            Console.WriteLine("Stalemate! Nobody wins.");
     }
 
     void Init(EventHandler hEvent)
@@ -47,17 +83,8 @@ public class BoardUI : UserInterface
             Point pos = new Point(
                 xOffset + tileStart.X,
                 tileStart.Y - yOffset);
-            Color c = lightColor;
-
-            // Determines dark color for even rows
-            if (i % 16 >= 8 && i % 2 == 1)
-                c = darkColor;
-            // Determines dark color for odd rows
-            else if (i % 16 < 8 && i % 2 == 0)
-                c = darkColor;
-
+            
             Button tile = new Button();
-            tile.BackColor = c;
             tile.FlatAppearance.BorderSize = 0;
             tile.FlatStyle = FlatStyle.Flat;
             tile.Location = pos;
@@ -69,6 +96,7 @@ public class BoardUI : UserInterface
             tile.UseVisualStyleBackColor = false;
             tile.Click += (s, e) => SelectTile(position);
             tile.TabStop = false;
+            tiles.Add(new PieceGraphic(tile));
             controls.Add(tile);
         }
 
@@ -155,4 +183,11 @@ public class BoardUI : UserInterface
         controls.Add(currentTurnLabel);
         controls.Add(bar);
     }
+
+    protected virtual void OnSelection(BoardEventArgs e)
+    {
+        Selection?.Invoke(this, e);
+    }
+    
+    public event EventHandler<BoardEventArgs> Selection;
 }

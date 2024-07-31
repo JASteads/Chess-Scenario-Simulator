@@ -30,6 +30,7 @@ namespace Main
         /// </summary>
         private void InitializeComponent()
         {
+            this.SuspendLayout();
             // 
             // Form1
             // 
@@ -44,6 +45,8 @@ namespace Main
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Chess Scenario Simulator";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

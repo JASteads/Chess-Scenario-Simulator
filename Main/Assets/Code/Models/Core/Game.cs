@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 public class Game
@@ -178,24 +179,27 @@ public class Game
         }
 
         // Castle logic
-        if (selectedPiece is King)
+        if (selectedPiece is King && 
+            !(selectedPiece as King).HasMoved)
         {
+
             bool canCastleS = activeMoveList[3].Count == 2 &&
                 loc == activeMoveList[3][1];
 
-            bool canCastleL = activeMoveList[4].Count > 0 &&
+            bool canCastleL = activeMoveList[4].Count == 2 &&
                 loc == activeMoveList[4][1];
 
             if (canCastleS || canCastleL)
                 DoCastle(selectedPiece as King,
                     FindPiece(allyTeam, pPos) as Rook);
         }
-        else if (selectedPiece is Rook)
+        else if (selectedPiece is Rook &&
+            !(selectedPiece as Rook).HasMoved)
         {
-            bool canCastleS = activeMoveList[0].Count > 0 && 
+            bool canCastleS = activeMoveList[0].Count > 2 && 
                 loc == activeMoveList[0][2];
 
-            bool canCastleL = activeMoveList[1].Count > 0 &&
+            bool canCastleL = activeMoveList[1].Count > 3 &&
                 loc == activeMoveList[1][3];
 
             // See if the move is short castle
@@ -213,7 +217,11 @@ public class Game
     {
         List<Piece> oppTeam = whiteTurn ? blackPieces : whitePieces;
 
+        PieceEventArgs e = new PieceEventArgs();
+        e.Piece = p;
+
         oppTeam.Remove(p);
+        OnPieceCapture(e);
     }
 
     void OnMoveEnd()
@@ -278,6 +286,8 @@ public class Game
 
         // Change turns if game hasn't ended
         if (IsActive) whiteTurn = !whiteTurn;
+
+        OnPieceMove(null);
     }
 
     void CheckForKing(King k)
@@ -297,6 +307,12 @@ public class Game
     {
         IsActive = false;
         this.isCheckmate = isCheckmate;
+
+        GameEndEventArgs e = new GameEndEventArgs();
+
+        e.IsChecked = isCheckmate;
+        e.EndTurn = whiteTurn;
+        OnGameEnd(e);
     }
 
     void UpdateKingAttack()
@@ -725,4 +741,23 @@ public class Game
                 p => p.GetKind() != (int)Piece.Kind.King &&
                 p != selectedPiece && p.GetPosition() == pos));
     }
+
+    protected virtual void OnGameEnd(GameEndEventArgs e)
+    {
+        GameEnd?.Invoke(this, e);
+    }
+
+    protected virtual void OnPieceCapture(PieceEventArgs e)
+    {
+        PieceCapture?.Invoke(this, e);
+    }
+
+    protected virtual void OnPieceMove(EventArgs e)
+    {
+        PieceMove?.Invoke(this, e);
+    }
+
+    public event EventHandler<GameEndEventArgs> GameEnd;
+    public event EventHandler<PieceEventArgs> PieceCapture;
+    public event EventHandler PieceMove;
 }
