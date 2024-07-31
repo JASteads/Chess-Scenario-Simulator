@@ -179,24 +179,27 @@ public class Game
         }
 
         // Castle logic
-        if (selectedPiece is King)
+        if (selectedPiece is King && 
+            !(selectedPiece as King).HasMoved)
         {
+
             bool canCastleS = activeMoveList[3].Count == 2 &&
                 loc == activeMoveList[3][1];
 
-            bool canCastleL = activeMoveList[4].Count > 0 &&
+            bool canCastleL = activeMoveList[4].Count == 2 &&
                 loc == activeMoveList[4][1];
 
             if (canCastleS || canCastleL)
                 DoCastle(selectedPiece as King,
                     FindPiece(allyTeam, pPos) as Rook);
         }
-        else if (selectedPiece is Rook)
+        else if (selectedPiece is Rook &&
+            !(selectedPiece as Rook).HasMoved)
         {
-            bool canCastleS = activeMoveList[0].Count > 0 && 
+            bool canCastleS = activeMoveList[0].Count > 2 && 
                 loc == activeMoveList[0][2];
 
-            bool canCastleL = activeMoveList[1].Count > 0 &&
+            bool canCastleL = activeMoveList[1].Count > 3 &&
                 loc == activeMoveList[1][3];
 
             // See if the move is short castle
