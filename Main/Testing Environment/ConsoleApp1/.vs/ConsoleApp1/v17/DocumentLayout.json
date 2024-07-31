@@ -11,12 +11,16 @@
       "RelativeMoniker": "D:0:0:{443C5D7B-7349-4D02-92B0-59C028E030F1}|ConsoleApp1.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{443C5D7B-7349-4D02-92B0-59C028E030F1}|ConsoleApp1.csproj|c:\\users\\wwwpe\\onedrive\\documents\\college\\txst\\summer 2024\\chess-scenario-simulator\\main\\testing environment\\consoleapp1\\core\\pawn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{443C5D7B-7349-4D02-92B0-59C028E030F1}|ConsoleApp1.csproj|solutionrelative:core\\pawn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{443C5D7B-7349-4D02-92B0-59C028E030F1}|ConsoleApp1.csproj|c:\\users\\wwwpe\\onedrive\\documents\\college\\txst\\summer 2024\\chess-scenario-simulator\\main\\testing environment\\consoleapp1\\core\\king.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{443C5D7B-7349-4D02-92B0-59C028E030F1}|ConsoleApp1.csproj|solutionrelative:core\\king.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{443C5D7B-7349-4D02-92B0-59C028E030F1}|ConsoleApp1.csproj|c:\\users\\wwwpe\\onedrive\\documents\\college\\txst\\summer 2024\\chess-scenario-simulator\\main\\testing environment\\consoleapp1\\core\\rook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{443C5D7B-7349-4D02-92B0-59C028E030F1}|ConsoleApp1.csproj|solutionrelative:core\\rook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{443C5D7B-7349-4D02-92B0-59C028E030F1}|ConsoleApp1.csproj|c:\\users\\wwwpe\\onedrive\\documents\\college\\txst\\summer 2024\\chess-scenario-simulator\\main\\testing environment\\consoleapp1\\core\\pawn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{443C5D7B-7349-4D02-92B0-59C028E030F1}|ConsoleApp1.csproj|solutionrelative:core\\pawn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,8 +30,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "King.cs",
+              "DocumentMoniker": "C:\\Users\\wwwpe\\OneDrive\\Documents\\College\\TXST\\Summer 2024\\Chess-Scenario-Simulator\\Main\\Testing Environment\\ConsoleApp1\\Core\\King.cs",
+              "RelativeDocumentMoniker": "Core\\King.cs",
+              "ToolTip": "C:\\Users\\wwwpe\\OneDrive\\Documents\\College\\TXST\\Summer 2024\\Chess-Scenario-Simulator\\Main\\Testing Environment\\ConsoleApp1\\Core\\King.cs",
+              "RelativeToolTip": "Core\\King.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAAAACkAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-30T05:18:32.193Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 3,
@@ -36,13 +53,14 @@
               "RelativeDocumentMoniker": "Core\\Rook.cs",
               "ToolTip": "C:\\Users\\wwwpe\\OneDrive\\Documents\\College\\TXST\\Summer 2024\\Chess-Scenario-Simulator\\Main\\Testing Environment\\ConsoleApp1\\Core\\Rook.cs",
               "RelativeToolTip": "Core\\Rook.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAACYAAAAcAAAA",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAA8AAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-28T02:01:54.486Z"
+              "WhenOpened": "2024-07-28T02:01:54.486Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Pawn.cs",
               "DocumentMoniker": "C:\\Users\\wwwpe\\OneDrive\\Documents\\College\\TXST\\Summer 2024\\Chess-Scenario-Simulator\\Main\\Testing Environment\\ConsoleApp1\\Core\\Pawn.cs",
               "RelativeDocumentMoniker": "Core\\Pawn.cs",
@@ -50,8 +68,7 @@
               "RelativeToolTip": "Core\\Pawn.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-28T00:38:55.178Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-28T00:38:55.178Z"
             },
             {
               "$type": "Document",
@@ -61,7 +78,7 @@
               "RelativeDocumentMoniker": "Core\\Game.cs",
               "ToolTip": "C:\\Users\\wwwpe\\OneDrive\\Documents\\College\\TXST\\Summer 2024\\Chess-Scenario-Simulator\\Main\\Testing Environment\\ConsoleApp1\\Core\\Game.cs",
               "RelativeToolTip": "Core\\Game.cs",
-              "ViewState": "AQIAALEAAAAAAAAAAAAAAM4AAAApAAAA",
+              "ViewState": "AQIAAK0AAAAAAAAAAAAYwMAAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-24T23:36:14.958Z",
               "EditorCaption": ""
@@ -74,7 +91,7 @@
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\wwwpe\\OneDrive\\Documents\\College\\TXST\\Summer 2024\\Chess-Scenario-Simulator\\Main\\Testing Environment\\ConsoleApp1\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAABAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACEAAAArAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-24T23:31:58.993Z",
               "EditorCaption": ""

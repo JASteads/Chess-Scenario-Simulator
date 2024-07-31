@@ -62,8 +62,8 @@ public class Game
         whiteTurn = true;
 
         // Add pieces from the scenario
-        foreach(Piece p in set)
-        { 
+        foreach (Piece p in set)
+        {
             List<Piece> team = p.GetTeam() == 0 ?
                 whitePieces : blackPieces;
 
@@ -120,7 +120,18 @@ public class Game
         int prev = selectedPiece.GetPosition(),
             prevRow = prev / 8,
             prevCol = prev % 8;
-        List<Piece> oppTeam = whiteTurn ? blackPieces : whitePieces;
+        List<Piece> oppTeam, allyTeam;
+
+        if (whiteTurn)
+        {
+            allyTeam = whitePieces;
+            oppTeam = blackPieces;
+        }
+        else
+        {
+            allyTeam = blackPieces;
+            oppTeam = whitePieces;
+        }
 
         selectedPiece.SetPosition(loc);
 
@@ -140,14 +151,14 @@ public class Game
 
             // The pawn becomes vulnerable if it's taken two steps
             (selectedPiece as Pawn).isVulnerable = isNowVulnerable;
-            
+
             // Try en passant if a defender hasn't been found yet
             if (defender == null && prevCol != col)
             {
                 int defenderPos = loc + (whiteTurn ? -8 : 8);
 
                 defender = oppTeam.Find(
-                    p => p is Pawn && 
+                    p => p is Pawn &&
                     p.GetPosition() == defenderPos);
             }
 
@@ -158,12 +169,37 @@ public class Game
                 Queen promotedPawn = new Queen(
                     (short)pPos, (short)selectedPiece.GetTeam());
 
-                List<Piece> team = whiteTurn ? whitePieces : blackPieces;
-
                 // Replace the pawn with the new queen
-                team.Remove(FindPiece(team, pPos));
-                team.Add(promotedPawn);
+                allyTeam.Remove(FindPiece(allyTeam, pPos));
+                allyTeam.Add(promotedPawn);
             };
+        }
+
+        // Castle logic
+        if (selectedPiece is King)
+        {
+            bool canCastleS = activeMoveList[3].Count == 2 &&
+                loc == activeMoveList[3][1];
+
+            bool canCastleL = activeMoveList[4].Count > 0 &&
+                loc == activeMoveList[4][1];
+
+            if (canCastleS || canCastleL)
+                DoCastle(selectedPiece as King,
+                    FindPiece(allyTeam, pPos) as Rook);
+        }
+        else if (selectedPiece is Rook)
+        {
+            bool canCastleS = activeMoveList[0].Count > 0 && 
+                loc == activeMoveList[0][2];
+
+            bool canCastleL = activeMoveList[1].Count > 0 &&
+                loc == activeMoveList[1][3];
+
+            // See if the move is short castle
+            if (canCastleS || canCastleL)
+                DoCastle(whiteTurn ? wKing : bKing,
+                    selectedPiece as Rook);
         }
 
         if (defender != null) OnCapture(defender);
@@ -223,7 +259,12 @@ public class Game
                 break;
             }
         }
-            
+
+        // Prevents further castling
+        if (selectedPiece is King)
+            (selectedPiece as King).HasMoved = true;
+        else if (selectedPiece is Rook)
+            (selectedPiece as Rook).HasMoved = true;
 
         // Clear the danger vectors if the king is not in danger
         if (!k.IsChecked) threatVec.Clear();
@@ -352,7 +393,7 @@ public class Game
 
         // If there are any attacks on the allied king, find the
         // movements this piece could make that must be restricted
-        if (oppAttacks.Count > 0)
+        if (selectedPiece is not King && oppAttacks.Count > 0)
         {
             bool isTrapped = oppAttacks.Exists(v => v.Exists(
                 pos => pos == selectedPiece.GetPosition()));
@@ -369,7 +410,7 @@ public class Game
             int pPos = p.GetPosition(),
                 offsetL = 7,
                 offsetM = 8,
-                offsetR = 9; 
+                offsetR = 9;
             bool onStartRow;
 
             if (p.GetTeam() == 0)
@@ -394,7 +435,7 @@ public class Game
                  (o as Pawn).isVulnerable));
 
             if (right == null) fMoves[0].Clear();
-            if (left == null)  fMoves[2].Clear();
+            if (left == null) fMoves[2].Clear();
 
             // Filter adds these pawn moves so they won't be 
             // considered attack vectors (pawn can't attack in front)
@@ -436,7 +477,7 @@ public class Game
                         // Pawns can only attack diagonally
                         List<List<short>> eMoves = FilterMoves(e);
 
-                        if (eMoves[0].Contains(m[0]) || 
+                        if (eMoves[0].Contains(m[0]) ||
                             eMoves[2].Contains(m[0])) m.Clear();
                     }
                     else
@@ -444,10 +485,10 @@ public class Game
                         // Remove king's move if in another vector
                         foreach (List<short> v in FilterMoves(e))
                             if (v.Exists(pos => m[0] == pos))
-                            { 
+                            {
                                 m.Clear();
                                 break;
-                                }
+                            }
                     }
 
                     if (m.Count == 0) break;
@@ -464,6 +505,71 @@ public class Game
             }
 
 
+        // KING CASTLE FILTER -- Add castle move if legal
+
+        if (selectedPiece.GetTeam() == p.GetTeam() &&
+            (selectedPiece is King &&
+            !(selectedPiece as King).HasMoved) ||
+            (selectedPiece is Rook &&
+            !(selectedPiece as Rook).HasMoved))
+        {
+            bool canCastleShort = false,
+                 canCastleLong = false;
+            int row = selectedPiece.GetPosition() / 8,
+                targetPos = ((row + 1) * 8) - 1;
+
+            List<short> castleRowS = [],
+                        castleRowL = [];
+            List<Piece> rooks = allyTeam.FindAll(
+                    p => p is Rook && !(p as Rook).HasMoved);
+
+            if (rooks.Count > 0)
+                // Create vectors of tiles that must be cleared
+                for (int i = 0; i < 4; i++)
+                {
+                    if (i < 3)
+                        castleRowS.Add((short)(targetPos - i));
+
+                    // Long castle starts 3 tiles offset
+                    castleRowL.Add((short)(targetPos - (i + 4)));
+                }
+
+            // If a rook is on right side, try enabling short castle
+            if (rooks.Exists(p => p.GetPosition() == targetPos))
+            {
+                canCastleShort = CanCastle(
+                    castleRowS, allyTeam, oppTeam);
+            }
+            // If a rook is on left side, try enabling long castle
+            if (rooks.Exists(p => p.GetPosition() == targetPos - 7))
+            {
+                canCastleLong = CanCastle(
+                    castleRowL, allyTeam, oppTeam);
+            }
+
+            // We can assume that the piece is a rook if not a king
+            if (selectedPiece is King)
+            {
+                if (fMoves[3].Count > 0 && canCastleShort)
+                    fMoves[3].Add((short)targetPos);
+
+                if (fMoves[4].Count > 0 && canCastleLong)
+                    fMoves[4].Add((short)(targetPos - 7));
+            }
+            else
+            {
+                short kingPos = 
+                    (short)(whiteTurn ? wKing : bKing).GetPosition();
+
+                if (fMoves[0].Count > 0 && canCastleShort)
+                    fMoves[0].Add(kingPos);
+
+                if (fMoves[1].Count > 0 && canCastleLong)
+                    fMoves[1].Add(kingPos);
+            }
+        }
+
+
         // THREAT FILTER -- Remove moves that don't intersect a threat
 
         if (selectedPiece is not King && threatVec.Count > 0)
@@ -474,6 +580,17 @@ public class Game
 
 
         return fMoves;
+    }
+    
+    bool CanCastle(List<short> vec, List<Piece> a, List<Piece> o)
+    {
+        // This is really gross, but it'll do
+        return !a.Exists(
+            p => p is not Rook && vec.Contains(
+                (short)p.GetPosition())) &&
+            !vec.Exists(pos => o.Exists(
+                o => o is not King &&
+                FilterMoves(o).Exists(v => v.Contains(pos))));
     }
 
     bool IsReinforced(Piece p, List<Piece> team)
@@ -548,6 +665,48 @@ public class Game
                 if (v.Count == 0) break;
             }
         });
+    }
+
+    void DoCastle(King k, Rook r)
+    {
+        int rPos = r.GetPosition();
+
+        if (k == null ||  r == null) return;
+
+        if (selectedPiece is King)
+        {
+            if (rPos % 8 == 7)
+            {
+                // Do short castle
+                r.SetPosition(rPos - 2);
+                k.SetPosition(rPos - 1);
+            }
+            else
+            {
+                // Do long castle
+                r.SetPosition(rPos + 3);
+                k.SetPosition(rPos + 2);
+            }
+        }
+        else
+        {
+            // If the move list contains a vector on the right
+            // of the king, then do a short castle
+            if (activeMoveList.Exists(v => v.Exists(
+                pos => pos % 8 == (short)((rPos % 8) + 1))))
+            {
+                // Do short castle
+                r.SetPosition(rPos + 1);
+                k.SetPosition(rPos + 2);
+            }
+            else
+            {
+                // Do long castle
+                r.SetPosition(rPos - 1);
+                k.SetPosition(rPos - 2);
+            }
+        }
+
     }
 
     bool IsKingSafe(List<short> av)

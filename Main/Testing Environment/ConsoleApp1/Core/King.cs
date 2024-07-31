@@ -4,6 +4,7 @@ public class King:Piece
 
     public King(short location, short team) : base(location, team)
     {
+        HasMoved = false;
         SetKind(5);
     }
 
