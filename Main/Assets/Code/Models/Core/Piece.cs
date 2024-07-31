@@ -45,31 +45,16 @@ public abstract class Piece
             information = (short)((information & ~(1 << 9)) | ((short)newTeam << 9));
         }
     }
-
-    public string NotateLocation()
-    {
-        char[] result = new char[2];
-        
-        int pos = GetPosition() + 1,
-            letterNum = (pos / 8) + 1,
-            valueNum = (pos % 8) + 1;
-        
-        result[0] = (char)('A' + letterNum);   
-        result[1] = (char)('1' + valueNum);
-
-        return result.ToString();
-    }
     
     public abstract List<List<short>> CheckMoves();
-  
-    public void Move()
-    {
-
-    }
-
-    public void OnCapture()
-    {
-
-    }
     
+    public enum Kind
+    {
+        Pawn = 0,
+        Rook = 1,
+        Knight = 2,
+        Bishop = 3,
+        Queen = 4,
+        King = 5
+    }
 }
