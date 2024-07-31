@@ -5,10 +5,10 @@ public abstract class Mode
     protected Game g;
     protected BoardUI ui;
 
-    public Mode(EventHandler hEvent, EventHandler refreshEvent)
+    public Mode(EventHandler hEvent)
     {
         g = new Game();
-        ui = new BoardUI(hEvent, refreshEvent);
+        ui = new BoardUI(hEvent);
         g.GameEnd += (s, e) => OnEndGame(e.EndTurn, e.IsChecked);
         g.PieceCapture += (s, e) => OnCapture(e.Piece);
         g.PieceMove += (s, e) => OnPieceMove();
@@ -19,13 +19,7 @@ public abstract class Mode
     {
         return ui;
     }
-
-    public void StartGame()
-    {
-        g.SetBoard();
-        UpdateBoard();
-    }
-
+    
     void PlayTurn(int pos)
     {
         g.SelectTile(pos);
@@ -42,12 +36,14 @@ public abstract class Mode
         ui.ChangeTurn();
     }
 
-    void UpdateBoard()
+    protected void UpdateBoard()
     {
         ui.SetTiles(
             g.whitePieces, g.blackPieces, g.activeMoveList);
         Console.WriteLine("Tiles set");
     }
 
+    public abstract void StartGame();
     protected abstract void OnEndGame(bool endTurn, bool isChecked);
+
 }

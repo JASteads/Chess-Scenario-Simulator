@@ -66,6 +66,7 @@
     <Compile Include="Assets\Code\Models\Core\Rook.cs" />
     <Compile Include="Assets\Code\Models\Mode.cs" />
     <Compile Include="Assets\Code\Models\PieceGraphic.cs" />
+    <Compile Include="Assets\Code\Models\PuzzleMode.cs" />
     <Compile Include="Assets\Code\Models\Puzzle\PuzzleGenerator.cs" />
     <Compile Include="Assets\Code\Models\Puzzle\Scenario.cs" />
     <Compile Include="Assets\Code\Models\StandardMode.cs" />

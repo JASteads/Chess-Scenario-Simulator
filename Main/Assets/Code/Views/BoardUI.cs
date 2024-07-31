@@ -10,12 +10,10 @@ public class BoardUI : UserInterface
 
 
     public BoardUI(
-        EventHandler hEvent, EventHandler onRefresh) : base()
+        EventHandler hEvent) : base()
     {
         currentTurnLabel = new Label();
         tiles = new List<PieceGraphic>();
-
-        OnRefresh = onRefresh;
 
         Init(hEvent);
     }
@@ -190,7 +188,6 @@ public class BoardUI : UserInterface
     {
         Selection?.Invoke(this, e);
     }
-
-    readonly EventHandler OnRefresh;
+    
     public event EventHandler<BoardEventArgs> Selection;
 }

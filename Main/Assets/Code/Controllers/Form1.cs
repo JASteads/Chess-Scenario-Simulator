@@ -61,18 +61,22 @@ namespace Main
             LoadMainMenuUI();
         }
 
-        void StartStandard()
+        void StartMode(Mode m)
         {
             ClearScreen();
-            activeGameMode = 
-                new StandardMode(HomeButton_Click, FindNewElements);
+            activeGameMode = m;
             LoadBoard();
+            activeGameMode.StartGame();
+        }
+
+        void StartStandard()
+        {
+            StartMode(new StandardMode(HomeButton_Click));
         }
 
         void StartPuzzleGenerator()
         {
-            ClearScreen();
-            LoadBoard();
+            StartMode(new PuzzleMode(HomeButton_Click));
             LoadPuzzleUI();
         }
 
@@ -85,7 +89,6 @@ namespace Main
         void LoadBoard()
         {
             LoadInterface(activeGameMode.GetBoardUI());
-            activeGameMode.StartGame();
         }
 
         void LoadPuzzleUI()
