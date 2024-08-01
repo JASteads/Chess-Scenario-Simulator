@@ -52,7 +52,7 @@ public class PuzzleGenerator
         {
             Rating = 100
         };
-        s1.StartingPieces.Add(new Queen (47,0));
+        s1.StartingPieces.Add(new Queen (39,0));
         s1.StartingPieces.Add(new King (60,1));
         s1.StartingPieces.Add(new Queen(42,0));
         AddMove(s1.CorrectMoves, 47, 4, 0);
@@ -65,8 +65,10 @@ public class PuzzleGenerator
         {
             Rating = 200
         };
-        s2.StartingPieces.Add(new Bishop (61,1));
-        s2.StartingPieces.Add(new Pawn (14,0));
+        s2.StartingPieces.Add(new Bishop (47,1));
+        s2.StartingPieces.Add(new Pawn (13,0));
+        s2.StartingPieces.Add(new King(44, 0));
+        s2.StartingPieces.Add(new King(28, 1));
         AddMove(s2.CorrectMoves, 61, 3, 1);
         AddMove(s2.CounterMoves, 14, 0, 0);
         ScenarioList.Add(s2);
@@ -76,8 +78,11 @@ public class PuzzleGenerator
         {
             Rating = 300
         };
-        s3.StartingPieces.Add(new King (40,0));
-        s3.StartingPieces.Add(new Rook (32,1));
+        s3.StartingPieces.Add(new King (48,0));
+        s3.StartingPieces.Add(new Rook (33,1));
+        s3.StartingPieces.Add(new Rook(42, 0));
+        s3.StartingPieces.Add(new Bishop(10, 0));
+        s3.StartingPieces.Add(new king(47, 1));
         AddMove(s3.CorrectMoves, 40, 5, 0);
         AddMove(s3.CounterMoves, 32, 1, 1);
         ScenarioList.Add(s3);
@@ -86,8 +91,13 @@ public class PuzzleGenerator
         {
             Rating = 400
         };
-        s4.StartingPieces.Add(new Bishop (14,1));
-        s4.StartingPieces.Add(new Queen (14,0));
+        s4.StartingPieces.Add(new Bishop (23,1));
+        s4.StartingPieces.Add(new Queen (42,0));
+        s4.StartingPieces.Add(new Knight(15, 1));
+        s4.StartingPieces.Add(new Rook(7, 1));
+        s4.StartingPieces.Add(new Rook(0, 0));
+        s4.StartingPieces.Add(new King(32, 0));
+        s4.StartingPieces.Add(new Queen(42, 0));
         AddMove(s4.CorrectMoves, 14, 3, 1);
         AddMove(s4.CounterMoves, 14, 4, 0);
         ScenarioList.Add(s4);
@@ -97,10 +107,14 @@ public class PuzzleGenerator
         {
             Rating = 500
         };
-        s5.StartingPieces.Add(new Bishop (52,1));
-        s5.StartingPieces.Add(new Queen (52,0));
-        s5.StartingPieces.Add(new Queen (52,1));
-        s5.StartingPieces.Add(new Bishop (52,0));
+        s5.StartingPieces.Add(new Bishop (45,1));
+        s5.StartingPieces.Add(new Queen (43,0));
+        s5.StartingPieces.Add(new Queen (31,1));
+        s5.StartingPieces.Add(new Bishop (34,0));
+        s5.StartingPieces.Add(new King(36, 0));
+        s5.StartingPieces.Add(new Rook(0, 0));
+        s5.StartingPieces.Add(new Rook(7, 1));
+        s5.StartingPieces.Add(new Pawn(14, 1));
         AddMove(s5.CorrectMoves, 52, 3, 1);
         AddMove(s5.CorrectMoves, 52, 4, 1);
         AddMove(s5.CounterMoves, 52, 4, 0);
@@ -112,8 +126,12 @@ public class PuzzleGenerator
         {
             Rating = 600
         };
-        s6.StartingPieces.Add(new Knight (49,0));
-        s6.StartingPieces.Add(new Queen (41,1));
+        s6.StartingPieces.Add(new Knight (32,0));
+        s6.StartingPieces.Add(new Queen (43,1));
+        s6.StartingPieces.Add(new Knight(51, 1));
+        s6.StartingPieces.Add(new King(47, 1));
+        s6.StartingPieces.Add(new Knight(15, 1));
+        s6.StartingPieces.Add(new Queen(24, 0));
         AddMove(s6.CorrectMoves, 49, 2, 0);
         AddMove(s6.CounterMoves, 41, 4, 1);
         ScenarioList.Add(s6);
@@ -123,9 +141,14 @@ public class PuzzleGenerator
         {
             Rating = 700
         };
-        s7.StartingPieces.Add(new Knight (25,0));
-        s7.StartingPieces.Add(new Queen (9,1));
-        AddMove(s7.CorrectMoves, 25, 2, 0);
+        s7.StartingPieces.Add(new Knight (27,0));
+        s7.StartingPieces.Add(new Queen (29,1));
+        s7.StartingPieces.Add(new Rook(0, 0));
+        s7.StartingPieces.Add(new Knight(56, 0));
+        s7.StartingPieces.Add(new King(23, 1));
+        s7.StartingPieces.Add(new Pawn(11, 0));
+        s7.StartingPieces.Add(new Pawn(19, 1));
+        AddMove(s7.CorrectMoves, 17, 2, 0);
         AddMove(s7.CounterMoves, 9, 4, 1);
         ScenarioList.Add(s7);
 
@@ -134,13 +157,13 @@ public class PuzzleGenerator
         {
             Rating = 800
         };
-        s8.StartingPieces.Add(new Queen (9,0));
-        s8.StartingPieces.Add(new Rook (36,1));
+        s8.StartingPieces.Add(new Queen (34,0));
+        s8.StartingPieces.Add(new Rook (39,1));
         s8.StartingPieces.Add(new Queen (38,0));
         s8.StartingPieces.Add(new Rook (35,1));
-        s8.StartingPieces.Add(new King (40,0));
+        s8.StartingPieces.Add(new King (48,0));
         s8.StartingPieces.Add(new Rook (24,1));
-        AddMove(s8.CorrectMoves, 9, 4, 0);
+        AddMove(s8.CorrectMoves, 14, 4, 0);
         AddMove(s8.CorrectMoves, 38, 4, 0);
         AddMove(s8.CorrectMoves, 40, 5, 0);
         AddMove(s8.CounterMoves, 36, 1, 1);
@@ -153,8 +176,11 @@ public class PuzzleGenerator
         {
             Rating = 900
         };
-        s9.StartingPieces.Add(new Queen (40,0));
-        s9.StartingPieces.Add(new Queen (40,1));
+        s9.StartingPieces.Add(new Queen (33,0));
+        s9.StartingPieces.Add(new Queen (48,1));
+        s9.StartingPieces.Add(new Bishop(34, 1));
+        s9.StartingPieces.Add(new Knight(17, 1));
+        s9.StartingPieces.Add(new King(24, 0));
         AddMove(s9.CorrectMoves, 40, 4, 0);
         AddMove(s9.CorrectMoves, 40, 4, 1);
         ScenarioList.Add(s9);
@@ -164,9 +190,12 @@ public class PuzzleGenerator
         {
             Rating = 1000
         };
-        s10.StartingPieces.Add(new Rook (39,0));
-        s10.StartingPieces.Add(new Rook (47,1));
+        s10.StartingPieces.Add(new Rook (33,0));
+        s10.StartingPieces.Add(new Rook (42,1));
         s10.StartingPieces.Add(new Rook (47,0));
+        s10.StartingPieces.Add(new King(63, 1));
+        s10.StartingPieces.Add(new Bishop(19, 0));
+        s10.StartingPieces.Add(new King(56, 0));
         AddMove(s10.CorrectMoves, 39, 1, 0);
         AddMove(s10.CorrectMoves, 47, 1, 0);
         AddMove(s10.CounterMoves, 47, 1, 1);
@@ -176,7 +205,15 @@ public class PuzzleGenerator
         {
             Rating = 1100
         };
-        s11.StartingPieces.Add(new Queen (62,0));
+        s11.StartingPieces.Add(new Queen (26,0));
+        s11.StartingPieces.Add(new Pawn(46, 1));
+        s11.StartingPieces.Add(new Pawn(54, 1));
+        s11.StartingPieces.Add(new Pawn(62, 1));
+        s11.StartingPieces.Add(new King(55, 1));
+        s11.StartingPieces.Add(new Rook(47, 1));
+        s11.StartingPieces.Add(new King(48, 0));
+        s11.StartingPieces.Add(new Bishop(8, 0));
+        s11.StartingPieces.Add(new Bishop(16, 0));
         AddMove(s11.CorrectMoves, 62, 4, 0);
         ScenarioList.Add(s11);
 
@@ -185,8 +222,14 @@ public class PuzzleGenerator
         {
             Rating = 1200
         };
-        s12.StartingPieces.Add(new Rook (24,0));
-        s12.StartingPieces.Add(new Rook (24,1));
+        s12.StartingPieces.Add(new Rook (32,0));
+        s12.StartingPieces.Add(new Rook (31,1));
+        s12.StartingPieces.Add(new Knight(0, 0));
+        s12.StartingPieces.Add(new Pawn(57, 0));
+        s12.StartingPieces.Add(new Pawn(49, 0));
+        s12.StartingPieces.Add(new Pawn(41, 0));
+        s12.StartingPieces.Add(new King(48, 0));
+        s12.StartingPieces.Add(new Bishop(38, 1));
         AddMove(s12.CorrectMoves, 24, 1, 0);
         AddMove(s12.CounterMoves, 24, 1, 1);
         ScenarioList.Add(s12);
@@ -196,7 +239,12 @@ public class PuzzleGenerator
         {
             Rating = 1300
         };
-        s13.StartingPieces.Add(new Rook (39,0));
+        s13.StartingPieces.Add(new Rook (34,0));
+        s13.StartingPieces.Add(new Bishop(8, 1));
+        s13.StartingPieces.Add(new Queen(0, 1));
+        s13.StartingPieces.Add(new Rook(39, 1));
+        s13.StartingPieces.Add(new King(16, 0));
+        s13.StartingPieces.Add(new Pawn(10, 0));
         AddMove(s13.CorrectMoves, 39, 1, 0);
         ScenarioList.Add(s13);
 
@@ -205,9 +253,14 @@ public class PuzzleGenerator
         {
             Rating = 1400
         };
+        s14.StartingPieces.Add(new Rook (14,0));
+        s14.StartingPieces.Add(new Rook (21,1));
         s14.StartingPieces.Add(new Rook (15,0));
-        s14.StartingPieces.Add(new Rook (23,1));
-        s14.StartingPieces.Add(new Rook (23,0));
+        s14.StartingPieces.Add(new King(47, 1));
+        s14.StartingPieces.Add(new Pawn(48, 1));
+        s14.StartingPieces.Add(new Pawn(54, 1));
+        s14.StartingPieces.Add(new Pawn(62, 1));
+        s14.StartingPieces.Add(new King(40, 0));
         AddMove(s14.CorrectMoves, 15, 1, 0);
         AddMove(s14.CorrectMoves, 23, 1, 0);
         AddMove(s14.CounterMoves, 23, 1, 1);
@@ -218,9 +271,15 @@ public class PuzzleGenerator
         {
             Rating = 1500
         };
-        s15.StartingPieces.Add(new Bishop (19,1));
-        s15.StartingPieces.Add(new King (48,0));
-        s15.StartingPieces.Add(new Rook (39,1));
+        s15.StartingPieces.Add(new Bishop (28,1));
+        s15.StartingPieces.Add(new King (40,0));
+        s15.StartingPieces.Add(new Rook (35,1));
+        s15.StartingPieces.Add(new Rook(35, 1));
+        s15.StartingPieces.Add(new king(37, 1));
+        s15.StartingPieces.Add(new Bishop(20, 0));
+        s15.StartingPieces.Add(new Pawn(57, 0));
+        s15.StartingPieces.Add(new Pawn(49, 0));
+        s15.StartingPieces.Add(new Pawn(41, 0));
         AddMove(s15.CorrectMoves, 19, 3, 1);
         AddMove(s15.CorrectMoves, 39, 1, 1);
         AddMove(s15.CounterMoves, 48, 5, 0);
