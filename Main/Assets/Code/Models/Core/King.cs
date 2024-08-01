@@ -61,6 +61,4 @@ public class King:Piece
 
         return lines;
     }
-
-    public void TryCastle() { }
 }
