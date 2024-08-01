@@ -1,6 +1,0 @@
-C:\Users\hamma\Documents\GitHub\Chess-Scenario-Simulator\Main\Assets\PuzzleGenerator.nUnitTests\obj\Debug\net8.0\PuzzleGenerator.nUnitTests.csproj.AssemblyReference.cache
-C:\Users\hamma\Documents\GitHub\Chess-Scenario-Simulator\Main\Assets\PuzzleGenerator.nUnitTests\obj\Debug\net8.0\PuzzleGenerator.nUnitTests.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\hamma\Documents\GitHub\Chess-Scenario-Simulator\Main\Assets\PuzzleGenerator.nUnitTests\obj\Debug\net8.0\PuzzleGenerator.nUnitTests.AssemblyInfoInputs.cache
-C:\Users\hamma\Documents\GitHub\Chess-Scenario-Simulator\Main\Assets\PuzzleGenerator.nUnitTests\obj\Debug\net8.0\PuzzleGenerator.nUnitTests.AssemblyInfo.cs
-C:\Users\hamma\Documents\GitHub\Chess-Scenario-Simulator\Main\Assets\PuzzleGenerator.nUnitTests\obj\Debug\net8.0\PuzzleGenerator.nUnitTests.csproj.CoreCompileInputs.cache
-C:\Users\hamma\Documents\GitHub\Chess-Scenario-Simulator\Main\Assets\PuzzleGenerator.nUnitTests\obj\Debug\net8.0\PuzzleGenerator.nUnitTests.sourcelink.json
