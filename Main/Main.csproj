@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>Main</RootNamespace>
     <AssemblyName>Main</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -47,23 +47,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Code\Controllers\BoardEventArgs.cs" />
     <Compile Include="Assets\Code\Controllers\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Assets\Code\Controllers\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Assets\Code\Controllers\GameEndEventArgs.cs" />
     <Compile Include="Assets\Code\Models\Core\Bishop.cs" />
     <Compile Include="Assets\Code\Models\Core\Game.cs" />
     <Compile Include="Assets\Code\Models\Core\King.cs" />
     <Compile Include="Assets\Code\Models\Core\Knight.cs" />
     <Compile Include="Assets\Code\Models\Core\Pawn.cs" />
     <Compile Include="Assets\Code\Models\Core\Piece.cs" />
+    <Compile Include="Assets\Code\Controllers\PieceEventArgs.cs" />
     <Compile Include="Assets\Code\Models\Core\Queen.cs" />
     <Compile Include="Assets\Code\Models\Core\Rook.cs" />
+    <Compile Include="Assets\Code\Controllers\Mode.cs" />
+    <Compile Include="Assets\Code\Models\Visual Elements\PieceGraphic.cs" />
+    <Compile Include="Assets\Code\Controllers\PuzzleMode.cs" />
     <Compile Include="Assets\Code\Models\Puzzle\PuzzleGenerator.cs" />
     <Compile Include="Assets\Code\Models\Puzzle\Scenario.cs" />
-    <Compile Include="Assets\Code\Models\SystemManager.cs" />
+    <Compile Include="Assets\Code\Controllers\StandardMode.cs" />
     <Compile Include="Assets\Code\Views\BoardUI.cs" />
     <Compile Include="Assets\Code\Views\MainMenuUI.cs" />
     <Compile Include="Assets\Code\Views\PuzzleUI.cs" />
@@ -83,7 +89,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="ClassDiagram1.cd" />
+    <None Include="Project Class Diagram.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
