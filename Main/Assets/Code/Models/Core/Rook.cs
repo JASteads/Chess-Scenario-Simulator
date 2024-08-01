@@ -46,6 +46,4 @@ public class Rook:Piece
 
         return lines;
     }
-
-    public void TryCastle() { }
 }
