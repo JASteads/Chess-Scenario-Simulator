@@ -64,12 +64,12 @@
     <Compile Include="Assets\Code\Controllers\PieceEventArgs.cs" />
     <Compile Include="Assets\Code\Models\Core\Queen.cs" />
     <Compile Include="Assets\Code\Models\Core\Rook.cs" />
-    <Compile Include="Assets\Code\Models\Mode.cs" />
-    <Compile Include="Assets\Code\Models\PieceGraphic.cs" />
-    <Compile Include="Assets\Code\Models\PuzzleMode.cs" />
+    <Compile Include="Assets\Code\Controllers\Mode.cs" />
+    <Compile Include="Assets\Code\Models\Visual Elements\PieceGraphic.cs" />
+    <Compile Include="Assets\Code\Controllers\PuzzleMode.cs" />
     <Compile Include="Assets\Code\Models\Puzzle\PuzzleGenerator.cs" />
     <Compile Include="Assets\Code\Models\Puzzle\Scenario.cs" />
-    <Compile Include="Assets\Code\Models\StandardMode.cs" />
+    <Compile Include="Assets\Code\Controllers\StandardMode.cs" />
     <Compile Include="Assets\Code\Views\BoardUI.cs" />
     <Compile Include="Assets\Code\Views\MainMenuUI.cs" />
     <Compile Include="Assets\Code\Views\PuzzleUI.cs" />
