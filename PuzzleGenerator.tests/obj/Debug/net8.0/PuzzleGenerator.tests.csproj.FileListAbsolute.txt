@@ -1,0 +1,6 @@
+C:\Users\dell\Source\Repos\Chess-Scenario-Simulator-HAK\PuzzleGenerator.tests\obj\Debug\net8.0\PuzzleGenerator.tests.csproj.AssemblyReference.cache
+C:\Users\dell\Source\Repos\Chess-Scenario-Simulator-HAK\PuzzleGenerator.tests\obj\Debug\net8.0\PuzzleGenerator.tests.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\dell\Source\Repos\Chess-Scenario-Simulator-HAK\PuzzleGenerator.tests\obj\Debug\net8.0\PuzzleGenerator.tests.AssemblyInfoInputs.cache
+C:\Users\dell\Source\Repos\Chess-Scenario-Simulator-HAK\PuzzleGenerator.tests\obj\Debug\net8.0\PuzzleGenerator.tests.AssemblyInfo.cs
+C:\Users\dell\Source\Repos\Chess-Scenario-Simulator-HAK\PuzzleGenerator.tests\obj\Debug\net8.0\PuzzleGenerator.tests.csproj.CoreCompileInputs.cache
+C:\Users\dell\Source\Repos\Chess-Scenario-Simulator-HAK\PuzzleGenerator.tests\obj\Debug\net8.0\PuzzleGenerator.tests.sourcelink.json
