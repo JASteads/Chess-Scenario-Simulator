@@ -13,3 +13,4 @@ C:\Users\wwwpe\OneDrive\Documents\College\TXST\Summer 2024\Chess-Scenario-Simula
 C:\Users\wwwpe\OneDrive\Documents\College\TXST\Summer 2024\Chess-Scenario-Simulator\Main\Testing Environment\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.pdb
 C:\Users\wwwpe\OneDrive\Documents\College\TXST\Summer 2024\Chess-Scenario-Simulator\Main\Testing Environment\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.genruntimeconfig.cache
 C:\Users\wwwpe\OneDrive\Documents\College\TXST\Summer 2024\Chess-Scenario-Simulator\Main\Testing Environment\ConsoleApp1\obj\Debug\net8.0\ref\ConsoleApp1.dll
+C:\Users\Machine\Documents\Chess-Scenario-Simulator\Main\Testing Environment\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.pdb

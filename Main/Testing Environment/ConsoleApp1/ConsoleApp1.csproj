@@ -7,4 +7,15 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Include="..\..\Assets\Code\Models\Core\Bishop.cs" Link="Bishop.cs" />
+    <Compile Include="..\..\Assets\Code\Models\Core\Game.cs" Link="Game.cs" />
+    <Compile Include="..\..\Assets\Code\Models\Core\King.cs" Link="King.cs" />
+    <Compile Include="..\..\Assets\Code\Models\Core\Knight.cs" Link="Knight.cs" />
+    <Compile Include="..\..\Assets\Code\Models\Core\Pawn.cs" Link="Pawn.cs" />
+    <Compile Include="..\..\Assets\Code\Models\Core\Piece.cs" Link="Piece.cs" />
+    <Compile Include="..\..\Assets\Code\Models\Core\Queen.cs" Link="Queen.cs" />
+    <Compile Include="..\..\Assets\Code\Models\Core\Rook.cs" Link="Rook.cs" />
+  </ItemGroup>
+
 </Project>
