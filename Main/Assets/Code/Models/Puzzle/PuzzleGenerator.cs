@@ -82,7 +82,7 @@ public class PuzzleGenerator
         s3.StartingPieces.Add(new Rook (33,1));
         s3.StartingPieces.Add(new Rook(42, 0));
         s3.StartingPieces.Add(new Bishop(10, 0));
-        s3.StartingPieces.Add(new king(47, 1));
+        s3.StartingPieces.Add(new King(47, 1));
         AddMove(s3.CorrectMoves, 40, 5, 0);
         AddMove(s3.CounterMoves, 32, 1, 1);
         ScenarioList.Add(s3);
@@ -275,7 +275,7 @@ public class PuzzleGenerator
         s15.StartingPieces.Add(new King (40,0));
         s15.StartingPieces.Add(new Rook (35,1));
         s15.StartingPieces.Add(new Rook(35, 1));
-        s15.StartingPieces.Add(new king(37, 1));
+        s15.StartingPieces.Add(new King(37, 1));
         s15.StartingPieces.Add(new Bishop(20, 0));
         s15.StartingPieces.Add(new Pawn(57, 0));
         s15.StartingPieces.Add(new Pawn(49, 0));

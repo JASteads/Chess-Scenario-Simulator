@@ -31,29 +31,31 @@ public class Game
 
         // Add pieces to the board
         whitePieces.Add(new Rook(0, 0));
-        whitePieces.Add(new Rook(7, 0));
         whitePieces.Add(new Knight(1, 0));
-        whitePieces.Add(new Knight(6, 0));
         whitePieces.Add(new Bishop(2, 0));
-        whitePieces.Add(new Bishop(5, 0));
         whitePieces.Add(new Queen(3, 0));
 
         wKing = new King(4, 0);
         whitePieces.Add(wKing);
 
+        whitePieces.Add(new Bishop(5, 0));
+        whitePieces.Add(new Knight(6, 0));
+        whitePieces.Add(new Rook(7, 0));
+
         for (short i = 8; i < 16; i++)
             whitePieces.Add(new Pawn(i, 0));
 
         blackPieces.Add(new Rook(56, 1));
-        blackPieces.Add(new Rook(63, 1));
         blackPieces.Add(new Knight(57, 1));
-        blackPieces.Add(new Knight(62, 1));
         blackPieces.Add(new Bishop(58, 1));
-        blackPieces.Add(new Bishop(61, 1));
         blackPieces.Add(new Queen(59, 1));
 
         bKing = new King(60, 1);
         blackPieces.Add(bKing);
+
+        blackPieces.Add(new Bishop(61, 1));
+        blackPieces.Add(new Knight(62, 1));
+        blackPieces.Add(new Rook(63, 1));
 
         for (short i = 48; i < 56; i++)
             blackPieces.Add(new Pawn(i, 1));
@@ -76,10 +78,30 @@ public class Game
         IsActive = true;
     }
 
-    // Attempts to return a piece from pieces at the given location
-    static Piece FindPiece(List<Piece> team, int loc)
+    public void Reset()
     {
-        return team.Find(p => p.GetPosition() == (short)loc);
+        // Start game with white going first
+        whiteTurn = true;
+        IsActive = true;
+        selectedPiece = null;
+        isCheckmate = false;
+
+        activeMoveList.Clear();
+        whitePieces.Clear();
+        blackPieces.Clear();
+        wKingAttacks.Clear();
+        bKingAttacks.Clear();
+        threatVec.Clear();
+
+        SetBoard();
+    }
+
+    // Attempts to return a piece from pieces at the given location
+    Piece FindPiece(List<Piece> team, int loc)
+    {
+        return team.Find(
+            p => p.GetPosition() == (short)loc &&
+            p != selectedPiece);
     }
 
     public void SelectTile(int locInt)
@@ -182,7 +204,6 @@ public class Game
         if (selectedPiece is King && 
             !(selectedPiece as King).HasMoved)
         {
-
             bool canCastleS = activeMoveList[3].Count == 2 &&
                 loc == activeMoveList[3][1];
 
@@ -292,6 +313,10 @@ public class Game
 
     void CheckForKing(King k)
     {
+        // If no moves can be made by the king, check to
+        // see the game will end. If so, end the game
+        // whether or not the king is in check
+
         if (FilterMoves(k).TrueForAll(v => v.Count == 0))
             if (CheckForEnd(whiteTurn ? blackPieces : whitePieces))
                 OnGameEnd(k.IsChecked);
@@ -299,12 +324,15 @@ public class Game
 
     bool CheckForEnd(List<Piece> team)
     {
+        // Check to see if any pieces on this team can move
         return team.TrueForAll(
             p => FilterMoves(p).TrueForAll(v => v.Count == 0));
     }
 
     void OnGameEnd(bool isCheckmate)
     {
+        // Prepare an event call and signal to stop the game loop
+
         IsActive = false;
         this.isCheckmate = isCheckmate;
 
@@ -527,6 +555,9 @@ public class Game
 
         // KING CASTLE FILTER -- Add castle move if legal
 
+        // If the selected piece is on the same team and as
+        // the current piece. This is to prevent recursion.
+        // If the piece is a king or rook, see if be able to castle
         if (selectedPiece.GetTeam() == p.GetTeam() &&
             (selectedPiece is King &&
             !(selectedPiece as King).HasMoved) ||
@@ -619,30 +650,38 @@ public class Game
 
         foreach (Piece e in team)
         {
+            // Get the raw moves of the piece
             List<List<short>> eMoves = e.CheckMoves();
-            List<short> referenceVec = null;
             Piece defender = null;
-            int referenceIndex = -1;
+
+            // The move vector to attempt to match later
+            List<short> referenceVec = null; 
 
             foreach (List<short> v in eMoves)
             {
                 int i = v.FindIndex(pos => pos == p.GetPosition());
 
-                // If p is found in the full movelist, remove
+                // If p is found in the full move vector, remove
                 // every move up to p (keep p's position)
                 if (i != -1)
                 {
                     v.RemoveRange(i + 1, v.Count - (i + 1));
 
+                    // We want to store both the modified version of
+                    // v and the defender to compare later
                     referenceVec = v;
                     defender = e;
-                    referenceIndex = eMoves.IndexOf(v);
                     break;
                 }
             }
 
+            // If there is a defender and a raw move vector
+            // on the piece being defended, continue
             if (defender != null && referenceVec != null)
             {
+                // Get the filtered move vectors of the defender.
+                // Then, attempt to find a position from the raw move
+                // vector that contains one of the filtered moves
                 List<List<short>> fMoves = FilterMoves(defender);
                 List<short> matchingVector = fMoves.Find(v =>
                 {
@@ -650,13 +689,23 @@ public class Game
                         pos => referenceVec.Contains(pos));
                 });
 
+                // If the filtered vector contains part of the
+                // raw move vector, add the position of the piece
+                // that wants to be reinforced
                 if (matchingVector != null)
                 {
                     matchingVector.Add((short)p.GetPosition());
                     success = true;
 
-                    for (int i = 0; success && i < matchingVector.Count; i++)
-                        success = matchingVector[i] == referenceVec[i];
+                    // Now we compare every position of both
+                    // the reference vector. If every position
+                    // matches, then this piece is reinforced by
+                    // the another piece
+                    for (int i = 0; 
+                        success && i < matchingVector.Count;
+                        i++)
+                        success = 
+                            matchingVector[i] == referenceVec[i];
                 }
 
                 if (success) break;
