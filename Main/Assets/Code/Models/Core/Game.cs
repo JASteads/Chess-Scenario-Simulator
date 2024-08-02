@@ -31,29 +31,31 @@ public class Game
 
         // Add pieces to the board
         whitePieces.Add(new Rook(0, 0));
-        whitePieces.Add(new Rook(7, 0));
         whitePieces.Add(new Knight(1, 0));
-        whitePieces.Add(new Knight(6, 0));
         whitePieces.Add(new Bishop(2, 0));
-        whitePieces.Add(new Bishop(5, 0));
         whitePieces.Add(new Queen(3, 0));
 
         wKing = new King(4, 0);
         whitePieces.Add(wKing);
 
+        whitePieces.Add(new Bishop(5, 0));
+        whitePieces.Add(new Knight(6, 0));
+        whitePieces.Add(new Rook(7, 0));
+
         for (short i = 8; i < 16; i++)
             whitePieces.Add(new Pawn(i, 0));
 
         blackPieces.Add(new Rook(56, 1));
-        blackPieces.Add(new Rook(63, 1));
         blackPieces.Add(new Knight(57, 1));
-        blackPieces.Add(new Knight(62, 1));
         blackPieces.Add(new Bishop(58, 1));
-        blackPieces.Add(new Bishop(61, 1));
         blackPieces.Add(new Queen(59, 1));
 
         bKing = new King(60, 1);
         blackPieces.Add(bKing);
+
+        blackPieces.Add(new Bishop(61, 1));
+        blackPieces.Add(new Knight(62, 1));
+        blackPieces.Add(new Rook(63, 1));
 
         for (short i = 48; i < 56; i++)
             blackPieces.Add(new Pawn(i, 1));
@@ -76,10 +78,30 @@ public class Game
         IsActive = true;
     }
 
-    // Attempts to return a piece from pieces at the given location
-    static Piece FindPiece(List<Piece> team, int loc)
+    public void Reset()
     {
-        return team.Find(p => p.GetPosition() == (short)loc);
+        // Start game with white going first
+        whiteTurn = true;
+        IsActive = true;
+        selectedPiece = null;
+        isCheckmate = false;
+
+        activeMoveList.Clear();
+        whitePieces.Clear();
+        blackPieces.Clear();
+        wKingAttacks.Clear();
+        bKingAttacks.Clear();
+        threatVec.Clear();
+
+        SetBoard();
+    }
+
+    // Attempts to return a piece from pieces at the given location
+    Piece FindPiece(List<Piece> team, int loc)
+    {
+        return team.Find(
+            p => p.GetPosition() == (short)loc &&
+            p != selectedPiece);
     }
 
     public void SelectTile(int locInt)
@@ -182,7 +204,6 @@ public class Game
         if (selectedPiece is King && 
             !(selectedPiece as King).HasMoved)
         {
-
             bool canCastleS = activeMoveList[3].Count == 2 &&
                 loc == activeMoveList[3][1];
 
