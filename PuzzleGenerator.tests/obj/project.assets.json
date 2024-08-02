@@ -990,6 +990,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "C:\\Users\\hamma\\Documents\\GitHub\\Chess-Scenario-Simulator\\Chess-Scenario-Simulator\\Main\\Assets\\ConsoleApp\\ConsoleApp.csproj",
       "MSTest.TestAdapter >= 3.1.1",
       "MSTest.TestFramework >= 3.1.1",
       "Microsoft.NET.Test.Sdk >= 17.8.0",
@@ -997,23 +998,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\dell\\.nuget\\packages\\": {},
+    "C:\\Users\\hamma\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dell\\Source\\Repos\\JASteads\\Chess-Scenario-Simulator\\PuzzleGenerator.tests\\PuzzleGenerator.tests.csproj",
+      "projectUniqueName": "C:\\Users\\hamma\\Documents\\GitHub\\Chess-Scenario-Simulator\\PuzzleGenerator.tests\\PuzzleGenerator.tests.csproj",
       "projectName": "PuzzleGenerator.tests",
-      "projectPath": "C:\\Users\\dell\\Source\\Repos\\JASteads\\Chess-Scenario-Simulator\\PuzzleGenerator.tests\\PuzzleGenerator.tests.csproj",
-      "packagesPath": "C:\\Users\\dell\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dell\\Source\\Repos\\JASteads\\Chess-Scenario-Simulator\\PuzzleGenerator.tests\\obj\\",
+      "projectPath": "C:\\Users\\hamma\\Documents\\GitHub\\Chess-Scenario-Simulator\\PuzzleGenerator.tests\\PuzzleGenerator.tests.csproj",
+      "packagesPath": "C:\\Users\\hamma\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\hamma\\Documents\\GitHub\\Chess-Scenario-Simulator\\PuzzleGenerator.tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\hamma\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -1027,7 +1028,11 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\hamma\\Documents\\GitHub\\Chess-Scenario-Simulator\\Chess-Scenario-Simulator\\Main\\Assets\\ConsoleApp\\ConsoleApp.csproj": {
+              "projectPath": "C:\\Users\\hamma\\Documents\\GitHub\\Chess-Scenario-Simulator\\Chess-Scenario-Simulator\\Main\\Assets\\ConsoleApp\\ConsoleApp.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -1081,5 +1086,16 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1104",
+      "level": "Error",
+      "message": "Unable to find project 'C:\\Users\\hamma\\Documents\\GitHub\\Chess-Scenario-Simulator\\Chess-Scenario-Simulator\\Main\\Assets\\ConsoleApp\\ConsoleApp.csproj'. Check that the project reference is valid and that the project file exists.",
+      "libraryId": "C:\\Users\\hamma\\Documents\\GitHub\\Chess-Scenario-Simulator\\Chess-Scenario-Simulator\\Main\\Assets\\ConsoleApp\\ConsoleApp.csproj",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
 }
