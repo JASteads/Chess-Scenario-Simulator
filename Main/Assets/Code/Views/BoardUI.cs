@@ -64,6 +64,8 @@ public class BoardUI : UserInterface
         }
         else
             Console.WriteLine("Stalemate! Nobody wins.");
+        
+        tiles.ForEach(t => { t.b.Enabled = false; });
     }
 
     void Init(EventHandler hEvent)

@@ -33,7 +33,7 @@ public abstract class Mode
 
     void OnPieceMove()
     {
-        ui.ChangeTurn();
+        if (g.IsActive) ui.ChangeTurn();
     }
 
     protected void UpdateBoard()
