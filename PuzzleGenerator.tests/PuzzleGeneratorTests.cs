@@ -22,6 +22,7 @@ public class PuzzleGeneratorTests
     {
         var result = _puzzleGenerator.GeneratePuzzle();
         Assert.IsNull(result);
+        TestContext.WriteLine("GeneratePuzzle_ShouldReturnNull passed.");
     }
 
     [TestMethod]
@@ -29,6 +30,7 @@ public class PuzzleGeneratorTests
     {
         _puzzleGenerator.StartPuzzle();
         Assert.IsTrue(true);
+        TestContext.WriteLine("StartPuzzle_ShouldInitializePuzzle passed.");
     }
 
     [TestMethod]
@@ -36,6 +38,7 @@ public class PuzzleGeneratorTests
     {
         _puzzleGenerator.Update();
         Assert.IsTrue(true);
+        TestContext.WriteLine("Update_ShouldUpdateGameState passed.");
     }
 
     [TestMethod]
@@ -43,6 +46,7 @@ public class PuzzleGeneratorTests
     {
         _puzzleGenerator.AddNoise();
         Assert.IsTrue(true);
+        TestContext.WriteLine("AddNoise_ShouldAddNoiseToScenario passed.");
     }
 
     [TestMethod]
@@ -50,5 +54,6 @@ public class PuzzleGeneratorTests
     {
         _puzzleGenerator.OnMove();
         Assert.IsTrue(true);
+        TestContext.WriteLine("OnMove_ShouldProcessMove passed.");
     }
 }

@@ -8,6 +8,10 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = PuzzleGenerator.tests
+<<<<<<< HEAD
 build_property.ProjectDir = C:\Users\dell\Source\Repos\JASteads\Chess-Scenario-Simulator\PuzzleGenerator.tests\
+=======
+build_property.ProjectDir = C:\Users\hamma\Documents\GitHub\Chess-Scenario-Simulator\PuzzleGenerator.tests\
+>>>>>>> HKALI
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

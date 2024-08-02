@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PuzzleGenerator.tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2e6ab29a042e0960770ada68740b6ecdf3002f36")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+effbf78779b766eefe9ce5b3e3d234b853279c76")]
 [assembly: System.Reflection.AssemblyProductAttribute("PuzzleGenerator.tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PuzzleGenerator.tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
