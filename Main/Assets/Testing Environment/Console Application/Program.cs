@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-
-public class Program
+﻿public class Program
 {
     static Game g;
 
     static void Main()
     {
-        StartGame();
+        GameTest.Game_TryCastling();
     }
 
     // For debugging : Call Select(int) for every move to make
